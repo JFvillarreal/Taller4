@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.List;
 
-@Path("/Arte")
+@Path("/arte2")
 public class ArteResource {
     @GET
     @Produces("application/json")
