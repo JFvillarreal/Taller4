@@ -1,0 +1,5 @@
+.Java
+target/servidorjavax3-1.0-SNAPSHOT.war/
+target/
+target/servidorjavax3-1.0-SNAPSHOT/META-INF/MANIFEST.MF
+vcs.xml
