@@ -43,7 +43,7 @@ public class ImageServices {
 
         return Optional.of(piezas);
     }
-    public void create_peace(String titulo,String Fcoins,String artista,String img,String path) throws IOException{
+    public Pieza create_peace(String titulo, String Fcoins, String artista, String img, String path) throws IOException{
         List<Pieza> listp=getPieces().get();
         Pieza nueva_pieza=new Pieza();
         nueva_pieza.setArtist(artista);
@@ -58,5 +58,6 @@ public class ImageServices {
         }
         os.write(res.getBytes());
         os.close();
+        return nueva_pieza;
     }
 }
