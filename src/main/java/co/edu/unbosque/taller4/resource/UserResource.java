@@ -4,7 +4,8 @@ import co.edu.unbosque.taller4.Dto.ExceptionMessage;
 import co.edu.unbosque.taller4.Dto.User;
 import co.edu.unbosque.taller4.service.UserService;
 
-import javax.servlet.ServletContext;
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -103,5 +104,52 @@ public class UserResource {
         }
 
     }
+    @POST
+    @Path("/formindex")
+    @Produces(MediaType.TEXT_HTML)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response createlogin(
+            @FormParam("username") String username,
+            @FormParam("password") String password
+    )  {
+        try{
+            HttpServletRequest request = null;
+            HttpServletRequest response = null;
+            response.setContentType("text/html");
+            List<User> users = new UserService().getUsers().get();
+            System.out.println("linea 57");
+            User user = users.stream()
+                    .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
+                    .findFirst()
+                    .orElse(null);
+            System.out.println("linea 62");
+            if (user != null) {
+                System.out.println("linea 64");
+                System.out.println("linea nueva 65");
+                System.out.println("esta es la nueva linea 125");
+                request.setAttribute("username", user.getUsername());
+                request.setAttribute("fcoins", user.getFcoins());
+                RequestDispatcher dispatcher=request.getRequestDispatcher("./Artista.jsp");
+                try {
+                    dispatcher.forward((ServletRequest) request, (ServletResponse) response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                }
+                return Response.ok()
+                        .entity(user)
+                        .build();
+            } else {
+                return Response.status(404)
+                        .entity(new ExceptionMessage(404, "User not found"))
+                        .build();
+            }
+
+        } catch (IOException e) {
+            System.out.println("linea 73");
+            return Response.serverError().build();
+        }
+    }
+
+
 
     }
