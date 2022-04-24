@@ -37,12 +37,12 @@ public class UserService {
                         .withMappingStrategy(strategy)
                         .withIgnoreLeadingWhiteSpace(true)
                         .build();
-
+                System.out.println("linea 40 ");
                 users = csvToBean.parse();
-
+                System.out.println("linea 42");
             }
         }
-
+        System.out.println("linea 45");
         return Optional.of(users);
     }
     public void WriteCvs(User nuevo_usuario) throws IOException {
@@ -90,10 +90,10 @@ public class UserService {
         System.out.println("en esta linea se supone que se esta escribiendo el csv");
         csvWriter.close();
     }
-    public void createUser(String username, String password,String role,String Fcoins, String path) throws IOException {
+    public User createUser(String username, String password,String role,String Fcoins, String path) throws IOException {
 
         List<User>  lista=getUsers().get();
-        User nuevo_usuario=new User();
+        User nuevo_usuario=new User(  );
         nuevo_usuario.setFcoins(Fcoins);
         nuevo_usuario.setUsername(username);
         nuevo_usuario.setPassword(password);
@@ -106,6 +106,7 @@ public class UserService {
         }
         os.write(res.getBytes());
         os.close();
+        return nuevo_usuario;
     }
 
     public void mandarfcoins(String username,String password,String Fcoins,String path) throws IOException {
