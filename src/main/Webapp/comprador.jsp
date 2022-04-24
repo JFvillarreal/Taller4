@@ -11,6 +11,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="./Costumer.css">
 </head>
+
 <body  style="background:#11286A">
 <header style="background: black"  ><h1 style="color: #0097A7"><%= "Costumer : " + request.getParameter("username") %></h1></header>
 <h1>your count have <%=  request.getAttribute("fcoins") %> Fcoins</h1>
