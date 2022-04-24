@@ -30,6 +30,7 @@ public class UserResource {
                     .entity(users)
                     .build();
         } catch (IOException e) {
+
             return Response.serverError().build();
         }
     }
