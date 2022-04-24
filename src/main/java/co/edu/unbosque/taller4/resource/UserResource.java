@@ -88,6 +88,7 @@ public class UserResource {
             @FormParam("role") String role,
             @FormParam("fcoins")String Fcoins
     ){
+        System.out.println("linea 91");
 
         String contextPath =context.getRealPath("") + File.separator;
 

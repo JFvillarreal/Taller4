@@ -1,0 +1,70 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url(./img/van.jpg);
+    background-size: cover;
+
+    height: 100vh;
+
+}
+
+.loginbox{
+    width: 300px;
+    height: 420px;
+    background: #000;
+    color:#fff;
+    top:50%;
+    left:50%;
+    position: absolute;
+    transform: translate(-50% ,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+.loginbox h1{
+    margin:0;
+    padding:0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+
+.loginbox .f {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    position: absolute;
+    top: -20%;
+    left: calc(50% - 20%);
+}
+.loginbox label{
+    margin:0;
+    paddin:0;
+}
+.loginbox input{
+    width: 100%;
+    margin-bottom:20px;
+}
+:root{
+    --blanco: #FFFFFF;
+    --negro: #000000;
+    --amarillo: #FFC107;
+    --azul: #0097A7;
+    --gris: #757575;
+    --verde: #65FF33 ;
+
+    --fuente-principal: 3.8rem;
+}
+
+.loginbox input[type="text"],
+.loginbox input[type="password"]{
+    border:none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+
+}
+
+
