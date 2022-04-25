@@ -4,7 +4,7 @@ package co.edu.unbosque.taller4.resource;
 import co.edu.unbosque.taller4.Dto.Pieza;
 import co.edu.unbosque.taller4.service.ImageServices;
 import co.edu.unbosque.taller4.service.UserService;
-import jakarta.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.MultivaluedMap;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
