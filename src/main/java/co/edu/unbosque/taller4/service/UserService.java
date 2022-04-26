@@ -109,7 +109,7 @@ public class UserService {
         return nuevo_usuario;
     }
 
-    public void mandarfcoins(String username,String password,String Fcoins,String path) throws IOException {
+    public void mandarfcoins(String username, String password, String Fcoins, String path) throws IOException {
         List<User>  lista= getUsers().get();
         boolean res=false;
         int nfcoins=Integer.parseInt(Fcoins);
@@ -125,6 +125,7 @@ public class UserService {
         }
         os.write(res2.getBytes());
         os.close();
+
     }
 
 }

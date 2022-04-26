@@ -146,7 +146,16 @@ public class UserResource {
                 request.setAttribute("Fcoins",user.getFcoins());
                 request.setAttribute("role",user.getRole());
 
+               if(user.getRole().equals("Artist")){
+
+
                 return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/Artista.jsp"))).build();
+               }
+
+               else {
+                   return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/comprador.jsp"))).build();
+
+               }
             } else {
                 System.out.println("linea 133");
                 return Response.status(404)
@@ -163,6 +172,62 @@ public class UserResource {
         return  null;
     }
 
+      @PUT
+      @Path("/formracarga")
+      @Produces(MediaType.APPLICATION_JSON)
+      @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+      public Response createcarga(
+              @Context HttpServletRequest request,
+              @Context HttpServletResponse response
+
+      ) throws Exception  {
 
 
-    }
+          String Username=request.getParameter("username");
+          String password=request.getParameter("password");
+          String Fcoins=request.getParameter("fcoins");
+          request.setAttribute("username",Username);
+          String contextPath =context.getRealPath("") + File.separator;
+
+
+
+
+          RequestDispatcher dispatcher=request.getRequestDispatcher("./LoadS.jsp");
+          try {
+              List<User> users = new UserService().getUsers().get();
+              System.out.println("esta es el username de createlogin "+request.getParameter("username"));
+              System.out.println("linea 57");
+              System.out.println("linea 118");
+              User user = users.stream()
+                      .filter(u -> u.getUsername().equals(request.getParameter("username")) && u.getPassword().equals(request.getParameter("password")))
+                      .findFirst()
+                      .orElse(null);
+              System.out.println("linea 62");
+
+              if (user != null) {
+                  System.out.println("linea 64");
+                  System.out.println("linea nueva 65");
+                  System.out.println("esta es la nueva linea 125");
+
+
+
+                  //return Response.temporaryRedirect(URI.create("./Users/formindex")).build();
+                  request.setAttribute("usuername",user.getUsername());
+                  request.setAttribute("Fcoins",user.getFcoins());
+                  request.setAttribute("fcois",user.getFcoins());
+                  new UserService().mandarfcoins(Username,password,Fcoins,contextPath);
+                  dispatcher.forward(request, response);
+                  return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/comprador.jsp"))).build();
+
+          } }catch (ServletException e) {
+              e.printStackTrace();
+          }
+
+
+         return null;
+ }
+}
+
+
+
+
