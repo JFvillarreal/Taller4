@@ -3,6 +3,8 @@ package co.edu.unbosque.taller4.resource;
 import co.edu.unbosque.taller4.Dto.ExceptionMessage;
 import co.edu.unbosque.taller4.Dto.User;
 import co.edu.unbosque.taller4.service.UserService;
+import com.sun.jndi.toolkit.url.Uri;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @Path("/Users")
@@ -111,18 +115,21 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response createlogin(
-            @FormParam("username") String username,
-            @FormParam("password") String password
-    )  {
+            @Context HttpServletRequest request,
+            @Context HttpServletResponse response
+
+            // @FormParam("username") String username,
+            //@FormParam("password") String password
+    ) throws Exception  {
 
         try{
 
             List<User> users = new UserService().getUsers().get();
-            System.out.println("esta es el username de createlogin "+username);
+            System.out.println("esta es el username de createlogin "+request.getParameter("username"));
             System.out.println("linea 57");
             System.out.println("linea 118");
             User user = users.stream()
-                    .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
+                    .filter(u -> u.getUsername().equals(request.getParameter("username")) && u.getPassword().equals(request.getParameter("password")))
                     .findFirst()
                     .orElse(null);
             System.out.println("linea 62");
@@ -133,9 +140,13 @@ public class UserResource {
                 System.out.println("esta es la nueva linea 125");
 
 
-                return Response.ok()
-                        .entity(user)
-                        .build();
+
+                //return Response.temporaryRedirect(URI.create("./Users/formindex")).build();
+                request.setAttribute("usuername",user.getUsername());
+                request.setAttribute("Fcoins",user.getFcoins());
+                request.setAttribute("role",user.getRole());
+
+                return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/Artista.jsp"))).build();
             } else {
                 System.out.println("linea 133");
                 return Response.status(404)
@@ -146,7 +157,10 @@ public class UserResource {
         } catch (IOException e) {
             System.out.println("linea 73");
             return Response.serverError().build();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
+        return  null;
     }
 
 
