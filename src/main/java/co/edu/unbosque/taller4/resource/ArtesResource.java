@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 
-@Path("/Users/{username}/imagen")
+@Path("/Arte/{username}/imagen")
 public class ArtesResource {
 
     @Context
