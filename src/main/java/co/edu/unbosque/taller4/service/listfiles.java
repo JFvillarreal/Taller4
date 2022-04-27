@@ -14,7 +14,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "listFiles", value = "/list-files")
 public class listfiles extends HttpServlet {
     private String UPLOAD_DIRECTORY = "uploads";
     private ImageServices imageServices;

@@ -31,6 +31,7 @@ public class UserService {
 
                 System.out.println(br.toString()+" este es el br");
                 System.out.println(is.toString()+" este es el is");
+                System.out.println(" este es el is de lista usuario");
                 System.out.println();
                 CsvToBean<User> csvToBean = new CsvToBeanBuilder<User>(br)
                         .withType(User.class)
@@ -109,14 +110,16 @@ public class UserService {
         return nuevo_usuario;
     }
 
-    public void mandarfcoins(String username,String password,String Fcoins,String path) throws IOException {
+    public void mandarfcoins(String username, String password, String Fcoins, String path) throws IOException {
         List<User>  lista= getUsers().get();
         boolean res=false;
+        System.out.println("linea 116");
         int nfcoins=Integer.parseInt(Fcoins);
         for(int i=0;i< lista.size();i++){
             if(lista.get(i).getUsername().equals(username) && lista.get(i).getPassword().equals(password)){
                 lista.get(i).setFcoins((Integer.parseInt(lista.get(i).getFcoins())+nfcoins)+"");
             }
+
         }
         FileOutputStream os = new FileOutputStream(path + "WEB-INF/classes/" + "users.csv", false);
         String res2="username,password,role,Fcoins";
@@ -125,6 +128,7 @@ public class UserService {
         }
         os.write(res2.getBytes());
         os.close();
+
     }
 
 }
