@@ -96,6 +96,10 @@ public class ArtesResource {
             e.printStackTrace();
         }
     }
+
+
+
+
 }
 
 
