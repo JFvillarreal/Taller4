@@ -2,11 +2,14 @@ package co.edu.unbosque.taller4.resource;
 
 
 import co.edu.unbosque.taller4.Dto.Pieza;
+import co.edu.unbosque.taller4.Dto.User;
 import co.edu.unbosque.taller4.service.ImageServices;
-import co.edu.unbosque.taller4.service.UserService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MultivaluedMap;
 
-import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+import co.edu.unbosque.taller4.service.UserService;
 import org.jboss.resteasy.plugins.providers.multipart.*;
 
 import javax.servlet.ServletContext;
@@ -14,7 +17,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
@@ -32,17 +34,35 @@ public class ArtesResource {
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response uploadFile(@PathParam("username") String username,  MultipartFormDataInput input) {
+    public Response uploadFile(@PathParam("username") String username,
+                               @Context HttpServletRequest request,
+                               @Context HttpServletResponse response,
+                              MultipartFormDataInput input) throws IOException {
+        List<Pieza> pieza = new ImageServices().getPieces().get();
+         String contextPath =context.getRealPath("") + File.separator;
         System.out.println("linea 35 del uplodfile resource");
         System.out.println("este es el multipart "+input.getFormDataMap());
         // Getting the file from form input
         Map<String, List<InputPart>> formParts = input.getFormDataMap();
         System.out.println("este es el formparts "+formParts);
         List<InputPart> inputParts = formParts.get("multiPartServlet");
+        List<InputPart> inputParts2 = formParts.get("fcoins");
+        List<InputPart> inputParts3 = formParts.get("titulo");
+        List<InputPart> inputParts4 = formParts.get("colecction");
+
         System.out.println("esta es la linea despues de unpitparts");
-        System.out.println("este es el inputparts "+inputParts);
+        System.out.println("este es el inputparts "+inputParts2);
+        System.out.println("este es el inputparts "+inputParts3);
+        System.out.println("este es el inputparts "+inputParts4);
+        String precio=request.getParameter("fcoins");
+        System.out.println("este es el nombre de precio "+precio);
+        String titulo= String.valueOf(formParts.get("fcoins").toString());
+        System.out.println("este es el nombre de titulo "+titulo);
+        String colection=request.getParameter("colecction");
         for (InputPart inputPart : inputParts) {
             try {
+
+
                 // Retrieving headers and reading the Content-Disposition header to file name
                 MultivaluedMap<String, String> headers = inputPart.getHeaders();
                 String fileName = crear()+".jpg";
@@ -51,6 +71,8 @@ public class ArtesResource {
                 // Handling the body of the part with an InputStream
                 InputStream istream = inputPart.getBody(InputStream.class,null);
 
+                Pieza img2 = new ImageServices().create_peace(titulo,precio,username,fileName,colection,contextPath);
+                System.out.println("este es el nombre de filename "+colection);
                 saveFile(istream, fileName, context);
             } catch (IOException e) {
                 return Response.serverError().build();
