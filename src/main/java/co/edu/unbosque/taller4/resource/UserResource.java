@@ -130,6 +130,9 @@ public class UserResource {
             System.out.println("esta es el username de createlogin "+request.getParameter("username"));
             System.out.println("linea 131");
             System.out.println("linea 132");
+            for(int i=0;i<users.size();i++){
+                System.out.println("este es un elemento de users list "+users.get(i));
+            }
             User user = users.stream()
                     .filter(u -> u.getUsername().equals(request.getParameter("username")) && u.getPassword().equals(request.getParameter("password")))
                     .findFirst()
