@@ -58,7 +58,7 @@ public class Uploadfile extends HttpServlet {
 
 
             }
-            imageServices.create_peace(request.getParameter("titulo"),request.getParameter("fcoins"),request.getParameter("artist"),fileName,getServletContext().getRealPath("") + File.separator);
+            imageServices.create_peace(request.getParameter("titulo"),request.getParameter("fcoins"),request.getParameter("artist"),fileName,request.getParameter("colecction"),getServletContext().getRealPath("") + File.separator);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

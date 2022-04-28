@@ -26,14 +26,16 @@
         });
 </script>
 <h1>Generate new art piece</h1>
-<form  action="./uploadFile" method="post" enctype="multipart/form-data" style="background: #6ACA1B">
+<form  action="./api/Users/<%=  request.getParameter("username") %>/imagen" method="post" enctype="multipart/form-data" style="background: #6ACA1B">
 
     Precio: <input type="text"  name="fcoins"/>
     Put your username again please: <input type="text" name="artist">
     titulo: <input type="text" name="titulo">
 
-    Choose a file: <input type="file" name="multiPartServlet"/>
-    <input type="submit" value="Upload"/>
+    colecction:  <input type="text" name="colecction">
+
+    Choose a file: <input type="file" name="multiPartServlet"  />
+    <input type="submit" value="Upload" enctype="multipart/form-data"/>
 </form>
 
 <a href="./recargar.html" style="background: #65FF33" style="color: #FFFFFF" > Loaded your count</a>

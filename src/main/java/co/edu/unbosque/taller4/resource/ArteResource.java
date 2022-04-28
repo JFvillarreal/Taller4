@@ -42,7 +42,7 @@ public class ArteResource {
 
         try {
 
-            pieza = new ImageServices().create_peace(pieza.getTitulo(), pieza.getPrecio(), pieza.getArtist(), pieza.getImg(),contextPath);
+            pieza = new ImageServices().create_peace(pieza.getTitulo(), pieza.getPrecio(), pieza.getArtist(), pieza.getImg(),pieza.getCollection(),contextPath);
 
             return Response.created(UriBuilder.fromResource(ArtesResource.class).path(pieza.getTitulo()).build())
                     .entity(pieza)
@@ -86,12 +86,13 @@ public class ArteResource {
             @FormParam("titulo") String titulo,
             @FormParam("username") String username,
             @FormParam("Imagen") String imagen,
-            @FormParam("precio") String precio
+            @FormParam("precio") String precio,
+            @FormParam("colecction") String coleccion
     ) {
         String contextPath =context.getRealPath("") + File.separator;
 
         try {
-           Pieza pieza = new ImageServices().create_peace(titulo,username, imagen, precio, contextPath);
+           Pieza pieza = new ImageServices().create_peace(titulo,username, imagen, precio,coleccion ,contextPath);
 
             return Response.created(UriBuilder.fromResource(ImageServices.class).path(username).build())
                     .entity(pieza)

@@ -43,13 +43,14 @@ public class ImageServices {
 
         return Optional.of(piezas);
     }
-    public Pieza create_peace(String titulo, String Fcoins, String artista, String img, String path) throws IOException{
+    public Pieza create_peace(String titulo, String Fcoins, String artista, String img,String coleccion, String path) throws IOException{
         List<Pieza> listp=getPieces().get();
         Pieza nueva_pieza=new Pieza();
         nueva_pieza.setArtist(artista);
         nueva_pieza.setPrecio(Fcoins);
         nueva_pieza.setImg(img);
         nueva_pieza.setTitulo(titulo);
+        nueva_pieza.setCollection(coleccion);
         listp.add(nueva_pieza);
         FileOutputStream os = new FileOutputStream(path + "WEB-INF/classes/" + "pieces.csv", false);
         String res="img,titulo,precio,artist";

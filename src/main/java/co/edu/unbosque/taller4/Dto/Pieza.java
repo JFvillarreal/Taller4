@@ -15,6 +15,9 @@ public class Pieza {
     @CsvBindByName
     private String img;
 
+    @CsvBindByName
+    private String collection;
+
     public String getTitulo() {
         return titulo;
     }
@@ -45,5 +48,13 @@ public class Pieza {
 
     public void setArtist(String artist) {
         this.artist = artist;
+    }
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
     }
 }
