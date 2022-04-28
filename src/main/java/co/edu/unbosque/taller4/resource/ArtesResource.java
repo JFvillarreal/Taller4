@@ -5,8 +5,9 @@ import co.edu.unbosque.taller4.Dto.Pieza;
 import co.edu.unbosque.taller4.service.ImageServices;
 import co.edu.unbosque.taller4.service.UserService;
 import javax.ws.rs.core.MultivaluedMap;
-import org.jboss.resteasy.plugins.providers.multipart.InputPart;
-import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
+
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+import org.jboss.resteasy.plugins.providers.multipart.*;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -17,10 +18,10 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
-
-@Path("/Arte/{username}/imagen")
+@Path("/Users/{username}/imagen")
 public class ArtesResource {
 
     @Context
@@ -31,16 +32,21 @@ public class ArtesResource {
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response uploadFile(@PathParam("username") String username, MultipartFormDataInput input) {
+    public Response uploadFile(@PathParam("username") String username,  MultipartFormDataInput input) {
+        System.out.println("linea 35 del uplodfile resource");
+        System.out.println("este es el multipart "+input.getFormDataMap());
         // Getting the file from form input
         Map<String, List<InputPart>> formParts = input.getFormDataMap();
+        System.out.println("este es el formparts "+formParts);
         List<InputPart> inputParts = formParts.get("file");
-
+        System.out.println("esta es la linea despues de unpitparts");
+        System.out.println("este es el inputparts "+inputParts);
         for (InputPart inputPart : inputParts) {
             try {
                 // Retrieving headers and reading the Content-Disposition header to file name
                 MultivaluedMap<String, String> headers = inputPart.getHeaders();
-                String fileName = parseFileName(headers);
+                String fileName = crear()+".jpg";
+                System.out.println("este es el nombre de filename "+fileName);
 
                 // Handling the body of the part with an InputStream
                 InputStream istream = inputPart.getBody(InputStream.class,null);
@@ -95,6 +101,21 @@ public class ArtesResource {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public String crear(){
+
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        System.out.println(generatedString);
+        return generatedString;
     }
 }
 
