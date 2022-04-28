@@ -38,7 +38,7 @@ public class ArtesResource {
         // Getting the file from form input
         Map<String, List<InputPart>> formParts = input.getFormDataMap();
         System.out.println("este es el formparts "+formParts);
-        List<InputPart> inputParts = formParts.get("file");
+        List<InputPart> inputParts = formParts.get("multiPartServlet");
         System.out.println("esta es la linea despues de unpitparts");
         System.out.println("este es el inputparts "+inputParts);
         for (InputPart inputPart : inputParts) {
