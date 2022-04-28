@@ -12,21 +12,9 @@
 </head>
 <body style="background: #1B2678">
 <header style="background: black" id="head"><h1 style="color: #0097A7"><%= "Artist : " + request.getParameter("username") %></h1></header>
-<script>
-    var header= document.getElementById("head");
-    fetch("./api/Users/formindex")
-    .then(response => response.json())
-        .then(images => {
-            images.map(image => {
-                // Creating the image element in DOM
-                let header=document.createElement("h2");
-                header.innerText=images[username];
-                head.appendChild(header);
-            });
-        });
-</script>
+
 <h1>Generate new art piece</h1>
-<form  action="./uploadFile" method="post" enctype="multipart/form-data" style="background: #6ACA1B">
+<form  action="./api/Users/formindex" method="post" enctype="multipart/form-data" style="background: #6ACA1B">
 
     Precio: <input type="text"  name="fcoins"/>
     Put your username again please: <input type="text" name="artist">

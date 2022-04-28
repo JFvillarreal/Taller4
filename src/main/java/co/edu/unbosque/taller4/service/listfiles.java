@@ -21,7 +21,7 @@ public class listfiles extends HttpServlet {
         this.imageServices=new ImageServices();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void creat(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 
 

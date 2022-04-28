@@ -1,6 +1,7 @@
 package co.edu.unbosque.taller4.Dto;
 
 import co.edu.unbosque.taller4.service.ImageServices;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -9,12 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Random;
 
-@WebServlet(name = "uploadFile", value = "/uploadFile")
+@Path("/mirar")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
         maxRequestSize = 1024 * 1024 * 5 * 5)
@@ -25,9 +35,13 @@ public class Uploadfile extends HttpServlet {
         this.imageServices=new ImageServices();
     }
     public void init() {}
+    @POST
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response hacer( @Context HttpServletRequest request,
+                           @Context HttpServletResponse response) throws ServletException, IOException, URISyntaxException {
+        System.out.println("linea 44");
         // Extracting parameters other than uploaded file
         System.out.println("Name: " + request.getParameter("name"));
         System.out.println("esta es la linea 24 ");
@@ -64,7 +78,8 @@ public class Uploadfile extends HttpServlet {
         }
 
         // Redirecting
-        response.sendRedirect("./resultado.html");
+
+        return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/loadS.jsp"))).build();
     }
 
     public void destroy() {}
