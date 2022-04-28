@@ -102,6 +102,7 @@ public class ArtesResource {
             e.printStackTrace();
         }
     }
+
     public String crear(){
 
         int leftLimit = 97; // letter 'a'
@@ -117,6 +118,7 @@ public class ArtesResource {
         System.out.println(generatedString);
         return generatedString;
     }
+
 }
 
 

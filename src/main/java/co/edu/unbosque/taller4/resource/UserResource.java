@@ -92,7 +92,7 @@ public class UserResource {
     public Response  createForm(
             @FormParam("username") String username,
             @FormParam("password") String password,
-            @FormParam("role") String role,
+            @FormParam("rol") String role,
             @FormParam("fcoins")String Fcoins
     ){
         System.out.println("linea 91");
@@ -101,6 +101,8 @@ public class UserResource {
 
         try {
             User user = new UserService().createUser(username, password, role,Fcoins, contextPath);
+           System.out.println("Estes es el rol"+ role);
+
 
             return Response.created(UriBuilder.fromResource(UserResource.class).path(username).build())
                     .entity(user)
@@ -126,18 +128,18 @@ public class UserResource {
 
             List<User> users = new UserService().getUsers().get();
             System.out.println("esta es el username de createlogin "+request.getParameter("username"));
-            System.out.println("linea 57");
-            System.out.println("linea 118");
+            System.out.println("linea 131");
+            System.out.println("linea 132");
             User user = users.stream()
                     .filter(u -> u.getUsername().equals(request.getParameter("username")) && u.getPassword().equals(request.getParameter("password")))
                     .findFirst()
                     .orElse(null);
-            System.out.println("linea 62");
+            System.out.println("linea 137");
 
             if (user != null) {
-                System.out.println("linea 64");
-                System.out.println("linea nueva 65");
-                System.out.println("esta es la nueva linea 125");
+                System.out.println("linea 139");
+                System.out.println("linea nueva 141");
+                System.out.println("esta es la nueva linea 142");
 
 
 
@@ -146,7 +148,17 @@ public class UserResource {
                 request.setAttribute("Fcoins",user.getFcoins());
                 request.setAttribute("role",user.getRole());
 
+               if(user.getRole().equals("Artist")){
+                 System.out.println("Crear artista");
+
                 return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/Artista.jsp"))).build();
+               }
+
+               else if(user.getRole().equals("Costumer")) {
+                   System.out.println("Crear costumer");
+                   return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/comprador.jsp"))).build();
+
+               }
             } else {
                 System.out.println("linea 133");
                 return Response.status(404)
@@ -163,6 +175,33 @@ public class UserResource {
         return  null;
     }
 
+      @POST
+      @Path("/formarecarga")
+      @Produces(MediaType.APPLICATION_JSON)
+      @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+      public Response createcarga(
+              @Context HttpServletRequest request,
+              @Context HttpServletResponse response
+
+      ) throws Exception  {
+          System.out.println("linea 187");
+          UserService userservice=new UserService();
+          System.out.println("esta es la linea 19 de servelets fcoins");
+          response.setContentType("text/html");
+          System.out.println("esta pasando en el servidor de Fcoinsserver");
+          String Username=request.getParameter("username");
+          String password=request.getParameter("password");
+          String Fcoins=request.getParameter("fcoins");
+          request.setAttribute("username",Username);
+
+          userservice.mandarfcoins(Username,password,Fcoins,context.getRealPath("") + File.separator);
 
 
-    }
+
+          return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/LoadS.jsp"))).build();
+      }
+}
+
+
+
+
