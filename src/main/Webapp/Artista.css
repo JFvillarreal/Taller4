@@ -12,3 +12,9 @@ a{
     padding: 8px 12px;
     text-decoration: none;
 }
+header{
+    height: 200px;
+}
+h1{
+    color: #0097A7;
+}
