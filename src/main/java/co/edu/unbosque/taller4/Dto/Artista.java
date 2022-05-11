@@ -6,6 +6,14 @@ public class Artista {
     private String paswoord;
     private String role;
 
+    public Artista(String email, Integer fcois, String password, String role) {
+        this.email = email;
+        this.paswoord = password;
+        this.role = role;
+        this.fcoins=fcoins;
+    }
+
+
     public String getRole() {
         return role;
     }
