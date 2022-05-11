@@ -34,6 +34,7 @@
           <element id="library" level="project" name="Maven: io.smallrye.config:smallrye-config-common:2.3.0" />
           <element id="library" level="project" name="Maven: org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_2.1_spec:2.0.1.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.2.Final" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.10" />
           <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-multipart-provider:4.7.0.Final" />
           <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-core-spi:4.7.0.Final" />
           <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jaxb-provider:4.7.0.Final" />
