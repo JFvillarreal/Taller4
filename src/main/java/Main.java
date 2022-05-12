@@ -27,8 +27,8 @@ public class Main {
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            ArtistaService artista = new ArtistaService(conn);
-            artista.listUsers();
+            //ArtistaService artista = new ArtistaService(conn);
+            //artista.listUsers();
 
             //PetsService petsService = new PetsService(conn);
             //petsService.countBySpecies("dog");
