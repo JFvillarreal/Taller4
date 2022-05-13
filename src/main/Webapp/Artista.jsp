@@ -9,21 +9,19 @@
 <html>
 <head>
     <link rel="stylesheet" href="./Artista.css">
+
 </head>
 <body style=" background: url(./img/marilyn.jpg);">
 <header id="head"><h1 style="color: rgba(5,103,47,0.68)"><%= "Artist : " + request.getParameter("username") %></h1></header>
+
 <script>
     var header= document.getElementById("head");
-    fetch("./api/Users/formindex")
-    .then(response => response.json())
-        .then(images => {
-            images.map(image => {
-                // Creating the image element in DOM
-                let header=document.createElement("h2");
-                header.innerText=images[username];
-                head.appendChild(header);
-            });
-        });
+    console.log("se esta pasandp por la linea 17 de la pagina html")
+    let titele= document.createElement("h1");
+    console.log(localStorage.getItem("username")+" este es el username de el localstorage");
+    console.log("este es jabascritp con arreglo")
+    titele.innerHTML=localStorage.getItem("username");
+    header.appendChild(titele);
 </script>
 <h1>Generate new art piece</h1>
 <form  action="./api/Users/<%=  request.getParameter("username") %>/imagen" method="post" enctype="multipart/form-data">

@@ -54,6 +54,43 @@ public class UserResource {
             return Response.serverError().build();
         }
     }
+    @POST
+    @Path("/found")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response found(User user){
+        String username_n=user.getUsername();
+        String password_n=user.getPassword();
+        System.out.println("linea 85");
+        System.out.println(user.getUsername()+" este es el username");
+        System.out.println(user.getPassword()+" este es el password");
+        System.out.println();
+        try{
+            List<User> users = new UserService().getUsers().get();
+            System.out.println("linea 57");
+            User user_n = users.stream()
+                    .filter(u -> u.getUsername().equals(username_n) && u.getPassword().equals(password_n))
+                    .findFirst()
+                    .orElse(null);
+            System.out.println("linea 62");
+            if (user_n != null) {
+                System.out.println("linea 64");
+                System.out.println("linea nueva 65");
+                return Response.ok()
+                        .entity(user_n)
+                        .build();
+            } else {
+                System.out.println("esta es la linea 111");
+                return Response.status(404)
+                        .entity(new ExceptionMessage(404, "User not found"))
+                        .build();
+            }
+
+        } catch (IOException e) {
+            System.out.println("linea 73");
+            return Response.serverError().build();
+        }
+    }
     @GET
     @Path("/{username}")
     @Produces(MediaType.APPLICATION_JSON)

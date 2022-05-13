@@ -15,8 +15,11 @@ public class User {
     @CsvBindByName
     private String Fcoins;
 
+    @CsvBindByName
+    private String correo;
 
-    
+
+
 
     public String getUsername() {
         return username;

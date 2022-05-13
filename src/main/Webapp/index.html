@@ -8,18 +8,20 @@
 <body>
 <div class="loginbox">
     <h1>login here </h1>
-    <form  action="./api/Users/formindex" method="post">
+    <form  id="formulario">
 
         <img class="f" src="./img/artefondo.jpg">
 
-        Username:<input type="text" placeholder="Enter Username"  name="username" required>
+        Username:<input type="text" placeholder="Enter Username"  name="username" id="username" required>
 
-        Password: <input type="password" placeholder="Enter password" name="password" required>
+        Password: <input type="password" placeholder="Enter password" name="password" id="password" required>
 
-        <input type="submit" value="Log in"  >
+        <input type="submit">
+
 
     </form>
     <a href="./logup.html"> dont have a count yet</a>
 </div>
+<script src="./Logicaindex.js"></script>
 </body>
 </html>
