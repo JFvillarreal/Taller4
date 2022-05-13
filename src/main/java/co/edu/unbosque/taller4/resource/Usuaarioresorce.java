@@ -58,4 +58,44 @@ public class Usuaarioresorce {
             }
         }
     }
+    public Connection connect() throws SQLException {
+        String url="jdbc:postgresql://localhost/postgres";
+        String user="postgres";
+        String password="Holapgadmin1999";
+        return DriverManager.getConnection(url, user, password);
+    }
+
+    public long insertuser(Usuario user){
+        String SQL= "INSERT INTO usuario(email, password, role)"+"VALUES(?,?,?)";
+        long id=0;
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL,
+                     Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, user.getEmail());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getRole());
+            int affectedRows = pstmt.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        id = rs.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return id;
+
+    }
+
+    public static void main(String[] args) {
+        Usuario user=new Usuario("email","1234","Artist");
+
+    }
 }
