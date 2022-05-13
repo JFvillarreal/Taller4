@@ -1,35 +1,34 @@
 package co.edu.unbosque.taller4.service;
 
 import co.edu.unbosque.taller4.Dto.Artista;
-import co.edu.unbosque.taller4.Dto.Usuario;
+import co.edu.unbosque.taller4.Dto.Coustomer;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistaService {
-    // Objects for handling connection
+public class CoustumerService {
     private Connection conn;
 
 
 
-    public ArtistaService(Connection conn) {
+    public CoustumerService(Connection conn) {
         this.conn = conn;
     }
 
-    public void updateartist(Artista artista) {
+    public void updatecoustumer(Coustomer coustomer) {
         // Object for handling SQL statement
         PreparedStatement stmt = null;
 
         try {
 
             // Executing a SQL query
-            System.out.println("=> Updating owner...");
-            stmt = this.conn.prepareStatement("UPDATE artist SET fcoins = ? WHERE email = ?");
-            stmt.setString(2, artista.getEmail());
-            System.out.println(artista.getEmail()+ " linae 29");
-            stmt.setInt(1, artista.getFcoins());
-            System.out.println(artista.getFcoins()+ " linae 31");
+            System.out.println("=> Updating coustumer...");
+            stmt = this.conn.prepareStatement("UPDATE costumer SET fcoins = ? WHERE email = ?");
+            stmt.setString(2, coustomer.getEmail());
+            System.out.println(coustomer.getEmail()+ " linae 29");
+            stmt.setInt(1, coustomer.getFcoins());
+            System.out.println(coustomer.getFcoins()+ " linae 31");
             int rowsUpdated = stmt.executeUpdate(); // executeUpdate is also used for inserting records
 
             // Printing results
@@ -49,16 +48,16 @@ public class ArtistaService {
         }
     }
 
-    public void listartista(){
+    public void listarcoustumer(){
         Statement stmt=null;
 
-        List<Artista> art=new ArrayList<Artista>();
+        List<Coustomer> cos=new ArrayList<Coustomer>();
 
         try {
             // Executing a SQL query
-            System.out.println("=> Listing users...");
+            System.out.println("=> Listing coustumer...");
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM artist";
+            String sql = "SELECT * FROM costumer";
             ResultSet rs = stmt.executeQuery(sql);
 
             // Reading data from result set row by row
@@ -68,18 +67,18 @@ public class ArtistaService {
                 Integer fcoins = rs.getInt("fcoins");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                art.add(new Artista(email,fcoins));
+                cos.add(new Coustomer(email,fcoins));
 
             }
 
             // Printing results
             System.out.println("Email | fcoins");
-            for (Artista arte : art) {
-                System.out.println(arte.getEmail()+" | "+arte.getFcoins());
+            for (Coustomer coscu : cos) {
+                System.out.println(coscu.getEmail()+" | "+coscu.getFcoins());
             }
 
             // Printing total rows
-            System.out.println("Total of users retrieved: " + art.size() + "\n");
+            System.out.println("Total of users retrieved: " + cos.size() + "\n");
 
             // Closing resources
             rs.close();
@@ -96,7 +95,5 @@ public class ArtistaService {
         }
     }
 }
-
-
 
 

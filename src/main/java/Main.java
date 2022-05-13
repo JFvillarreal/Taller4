@@ -1,5 +1,8 @@
 import co.edu.unbosque.taller4.Dto.Artista;
+import co.edu.unbosque.taller4.Dto.Coustomer;
+import co.edu.unbosque.taller4.resource.Usuaarioresorce;
 import co.edu.unbosque.taller4.service.ArtistaService;
+import co.edu.unbosque.taller4.service.CoustumerService;
 
 import java.sql.*;
 import java.sql.DriverManager;
@@ -27,8 +30,16 @@ public class Main {
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            //ArtistaService artista = new ArtistaService(conn);
-            //artista.listUsers();
+            Usuaarioresorce usersService = new Usuaarioresorce(conn);
+            usersService.listusers();
+
+            ArtistaService artista = new ArtistaService(conn);
+            artista.updateartist(new Artista("hugo@gmail.com", 250));
+            artista.listartista();
+
+            CoustumerService costumer = new CoustumerService(conn);
+            costumer.updatecoustumer(new Coustomer("h@gmail.com", 40));
+            costumer.listarcoustumer();
 
             //PetsService petsService = new PetsService(conn);
             //petsService.countBySpecies("dog");
