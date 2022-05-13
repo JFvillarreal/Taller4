@@ -1,12 +1,12 @@
 package co.edu.unbosque.taller4.Dto;
 
-public class Artista {
+public class Coustomer {
     private String email;
     private Integer fcoins;
 
 
 
-    public Artista(String email, Integer fcoins) {
+    public Coustomer(String email, Integer fcoins) {
         this.email = email;
 
 
@@ -43,3 +43,5 @@ public class Artista {
                 '}';
     }
 }
+
+
