@@ -1,5 +1,7 @@
 package co.edu.unbosque.taller4.resource;
 
+import co.edu.unbosque.taller4.Dto.Usuario;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,10 +9,13 @@ import java.sql.SQLException;
 public class MainUsuario {
     static final String JDBC_DRIVER = "org.postgresql.Driver";
     static final String DB_URL = "jdbc:postgresql://localhost/postgres";
+    private Usuaarioresorce log;
 
     // Database credentials
     static final String USER = "postgres";
     static final String PASS = "Holapgadmin1999";
+
+
 
     public static void main(String[] args) {
 
@@ -28,6 +33,12 @@ public class MainUsuario {
 
             Usuaarioresorce usersService = new Usuaarioresorce(conn);
             usersService.listusers();
+
+            Usuario user=new Usuario("email","1234","Artist");
+            Usuario user2=new Usuario("email@","jpta","Artist");
+            System.out.println("se esta ingresando al user");
+            new Usuaarioresorce(conn).insertuser(user2);
+            System.out.println("se termino de ingresar usuario a la db");
 
             //PetsService petsService = new PetsService(conn);
             //petsService.countBySpecies("dog");
@@ -50,4 +61,6 @@ public class MainUsuario {
             }
         }
     }
+    Usuario user=new Usuario("email","1234","Artist");
+
 }
