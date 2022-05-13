@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="./Artista.css">
 
 </head>
-<body style="background: #1B2678">
-<header style="background: black" id="head"></header>
+<body style=" background: url(./img/marilyn.jpg);">
+<header id="head"><h1 style="color: rgba(5,103,47,0.68)"><%= "Artist : " + request.getParameter("username") %></h1></header>
+
 <script>
     var header= document.getElementById("head");
     console.log("se esta pasandp por la linea 17 de la pagina html")
@@ -23,13 +24,13 @@
     header.appendChild(titele);
 </script>
 <h1>Generate new art piece</h1>
-<form  action="./api/Users/<%=  request.getParameter("username") %>/imagen" method="post" enctype="multipart/form-data" style="background: #6ACA1B">
+<form  action="./api/Users/<%=  request.getParameter("username") %>/imagen" method="post" enctype="multipart/form-data">
+    <div class="ref1">Precio: <input type="text"  name="fcoins"/></div>
+    <div class="ref1">Put your username again please: <input type="text" name="artist"></div>
 
-    Precio: <input type="text"  name="fcoins"/>
-    Put your username again please: <input type="text" name="artist">
-    titulo: <input type="text" name="titulo">
+   <div class="ref1"> titulo: <input type="text" name="titulo"></div>
 
-    colecction:  <input type="text" name="colecction">
+    <div class="ref1">colecction:  <input type="text" name="colecction"></div>
 
     Choose a file: <input type="file" name="multiPartServlet"  />
     <input type="submit" value="Upload" enctype="multipart/form-data"/>
