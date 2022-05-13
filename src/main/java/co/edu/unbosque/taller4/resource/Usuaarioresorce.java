@@ -38,7 +38,7 @@ public class Usuaarioresorce {
             // Printing results
             System.out.println("Email | Password | Role");
             for (Usuario user : lista_usuarios) {
-                System.out.println(user.toString());
+                System.out.println(user.getEmail()+" | "+user.getPassword()+" | "+user.getRole());
             }
 
             // Printing total rows
