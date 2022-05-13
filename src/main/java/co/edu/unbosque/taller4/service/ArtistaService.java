@@ -25,7 +25,7 @@ public class ArtistaService {
             // Executing a SQL query
             System.out.println("=> Listing users...");
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM Artista";
+            String sql = "SELECT * FROM usuario";
             ResultSet rs = stmt.executeQuery(sql);
 
             // Reading data from result set row by row
@@ -33,11 +33,11 @@ public class ArtistaService {
                 // Extracting row values by column name
                 Integer fcois= rs.getInt("fcoins");
                 String email = rs.getString("email");
-                String password = rs.getString("password");
+
                 String role = rs.getString("role");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                artista.add(new Artista(email,fcois,password,role));
+                artista.add(new Artista(email,fcois,role));
 
             }
 

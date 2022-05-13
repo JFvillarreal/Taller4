@@ -4,23 +4,16 @@ public class Artista {
     private String email;
     private Integer fcoins;
     private String paswoord;
-    private String role;
 
-    public Artista(String email, Integer fcois, String password, String role) {
+    public Artista(String email, Integer fcois, String password) {
         this.email = email;
         this.paswoord = password;
-        this.role = role;
+
         this.fcoins=fcoins;
     }
 
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getPaswoord() {
         return paswoord;
@@ -52,7 +45,7 @@ public class Artista {
                 "email='" + email + '\'' +
                 ", fcoins=" + fcoins +
                 ", paswoord='" + paswoord + '\'' +
-                ", role='" + role + '\'' +
+
                 '}';
     }
 }
