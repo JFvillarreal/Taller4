@@ -34,10 +34,9 @@ public class MainUsuario {
             Usuaarioresorce usersService = new Usuaarioresorce(conn);
             usersService.listusers();
 
-            Usuario user=new Usuario("email","1234","Artist");
-            Usuario user2=new Usuario("email@","jpta","Artist");
+
             System.out.println("se esta ingresando al user");
-            new Usuaarioresorce(conn).insertuser(user2);
+
             System.out.println("se termino de ingresar usuario a la db");
 
             //PetsService petsService = new PetsService(conn);
@@ -61,6 +60,6 @@ public class MainUsuario {
             }
         }
     }
-    Usuario user=new Usuario("email","1234","Artist");
+
 
 }
