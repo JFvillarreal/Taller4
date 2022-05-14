@@ -30,9 +30,10 @@ public class Usuaarioresorce {
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
+                String username=rs.getString("username");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                lista_usuarios.add(new Usuario(email, password, role));
+                lista_usuarios.add(new Usuario(email, password, role,username));
             }
 
             // Printing results
@@ -66,7 +67,7 @@ public class Usuaarioresorce {
     }
 
     public long insertuser(Usuario user){
-        String SQL= "INSERT INTO usuario(email, password, role)"+"VALUES(?,?,?)";
+        String SQL= "INSERT INTO usuario(email, password, role,username)"+"VALUES(?,?,?,?)";
         long id=0;
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL,
@@ -75,6 +76,7 @@ public class Usuaarioresorce {
             pstmt.setString(1, user.getEmail());
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getRole());
+            pstmt.setString(4,user.getUsername());
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
             if (affectedRows > 0) {
@@ -95,7 +97,7 @@ public class Usuaarioresorce {
     }
 
     public static void main(String[] args) {
-        Usuario user=new Usuario("email","1234","Artist");
+        Usuario user=new Usuario("email","1234","Artist","notnull");
 
     }
 }

@@ -2,6 +2,7 @@ package co.edu.unbosque.taller4.resource;
 
 import co.edu.unbosque.taller4.Dto.ExceptionMessage;
 import co.edu.unbosque.taller4.Dto.User;
+import co.edu.unbosque.taller4.Dto.Usuario;
 import co.edu.unbosque.taller4.service.UserService;
 import com.sun.jndi.toolkit.url.Uri;
 import org.apache.commons.lang3.StringUtils;
@@ -18,13 +19,23 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 @Path("/Users")
 public class UserResource {
-
+    static final String USER = "postgres";
+    static final String PASS = "Holapgadmin1999";
+    static final String DB_URL = "jdbc:postgresql://localhost/postgres";
+    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
     @Context
     ServletContext context;
+
+    public UserResource() throws SQLException {
+    }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
@@ -129,18 +140,20 @@ public class UserResource {
     public Response  createForm(
             @FormParam("username") String username,
             @FormParam("password") String password,
-            @FormParam("rol") String role,
-            @FormParam("fcoins")String Fcoins
+            @FormParam("role") String role,
+            @FormParam("email")String email
     ){
         System.out.println("linea 91");
 
         String contextPath =context.getRealPath("") + File.separator;
 
         try {
-            User user = new UserService().createUser(username, password, role,Fcoins, contextPath);
+            User user = new UserService().createUser(username, password, role,email, contextPath);
            System.out.println("Estes es el rol"+ role);
 
-
+            Usuaarioresorce usersService = new Usuaarioresorce(conn);
+            Usuario user_n=new Usuario(email,password,role,username);
+            usersService.insertuser(user_n);
             return Response.created(UriBuilder.fromResource(UserResource.class).path(username).build())
                     .entity(user)
                     .build();
