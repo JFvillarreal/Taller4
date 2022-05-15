@@ -1,8 +1,8 @@
 package co.edu.unbosque.taller4.resource;
 
-import co.edu.unbosque.taller4.Dto.ExceptionMessage;
-import co.edu.unbosque.taller4.Dto.User;
-import co.edu.unbosque.taller4.Dto.Usuario;
+import co.edu.unbosque.taller4.Dto.*;
+import co.edu.unbosque.taller4.service.ArtistaService;
+import co.edu.unbosque.taller4.service.CoustumerService;
 import co.edu.unbosque.taller4.service.UserService;
 import com.sun.jndi.toolkit.url.Uri;
 import org.apache.commons.lang3.StringUtils;
@@ -152,8 +152,17 @@ public class UserResource {
            System.out.println("Estes es el rol"+ role);
 
             Usuaarioresorce usersService = new Usuaarioresorce(conn);
+            ArtistaService artistaservice=new ArtistaService(conn);
+            CoustumerService costuemrservice=new CoustumerService(conn);
             Usuario user_n=new Usuario(email,password,role,username);
             usersService.insertuser(user_n);
+            if(user_n.getRole().equals("Artist")){
+                Artista artist=new Artista(email,0,password);
+                artistaservice.insertArtist(artist);
+            }else if(user_n.getRole().equals("Costumer")){
+                Coustomer costumer=new Coustomer(email,0,password);
+                costuemrservice.insertArtist(costumer);
+            }
             return Response.created(UriBuilder.fromResource(UserResource.class).path(username).build())
                     .entity(user)
                     .build();
