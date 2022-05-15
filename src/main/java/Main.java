@@ -1,8 +1,11 @@
 import co.edu.unbosque.taller4.Dto.Artista;
+import co.edu.unbosque.taller4.Dto.Colecction;
 import co.edu.unbosque.taller4.Dto.Coustomer;
 import co.edu.unbosque.taller4.resource.Usuaarioresorce;
 import co.edu.unbosque.taller4.service.ArtistaService;
+import co.edu.unbosque.taller4.service.ColecctionService;
 import co.edu.unbosque.taller4.service.CoustumerService;
+import co.edu.unbosque.taller4.service.obraService;
 
 import java.sql.*;
 import java.sql.DriverManager;
@@ -13,7 +16,7 @@ public class Main {
 
     // Database credentials
     static final String USER = "postgres";
-    static final String PASS = "jota73456";
+    static final String PASS = "";
 
     public static void main(String[] args) {
         System.out.println("pasa linea 12");
@@ -41,6 +44,12 @@ public class Main {
             costumer.updatecoustumer(new Coustomer("h@gmail.com", 40));
             costumer.listarcoustumer();
 
+            ColecctionService col= new ColecctionService(conn);
+            col.updatecolection(new Colecction("h@gmail.com", 40,"dd",9));
+            col.listacolection();
+
+            obraService obra =new obraService(conn);
+            obra.listaobra();
             //PetsService petsService = new PetsService(conn);
             //petsService.countBySpecies("dog");
 

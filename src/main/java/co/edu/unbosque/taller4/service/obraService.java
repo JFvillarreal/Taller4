@@ -1,23 +1,22 @@
 package co.edu.unbosque.taller4.service;
 
 import co.edu.unbosque.taller4.Dto.Artista;
-import co.edu.unbosque.taller4.Dto.Usuario;
+import co.edu.unbosque.taller4.Dto.Obra;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistaService {
-    // Objects for handling connection
+public class obraService {
     private Connection conn;
 
 
 
-    public ArtistaService(Connection conn) {
+    public obraService(Connection conn) {
         this.conn = conn;
     }
 
-    public void updateartist(Artista artista) {
+    public void updateobra(Obra obra) {
         // Object for handling SQL statement
         PreparedStatement stmt = null;
 
@@ -25,11 +24,11 @@ public class ArtistaService {
 
             // Executing a SQL query
             System.out.println("=> Updating owner...");
-            stmt = this.conn.prepareStatement("UPDATE artist SET fcoins = ? WHERE email = ?");
-            stmt.setString(2, artista.getEmail());
-            System.out.println(artista.getEmail()+ " linae 29");
-            stmt.setInt(1, artista.getFcoins());
-            System.out.println(artista.getFcoins()+ " linae 31");
+            stmt = this.conn.prepareStatement("UPDATE obra SET imagen=? SET titulo=? SET fcoins = ? WHERE colectionid = ?");
+            stmt.setString(1, obra.getTitulo());
+            System.out.println(obra.getTitulo()+ " linae 29");
+            stmt.setInt(2, obra.getPieceid());
+            System.out.println(obra.getPieceid()+ " linae 31");
             int rowsUpdated = stmt.executeUpdate(); // executeUpdate is also used for inserting records
 
             // Printing results
@@ -49,33 +48,36 @@ public class ArtistaService {
         }
     }
 
-    public void listartista(){
+    public void listaobra(){
         Statement stmt=null;
 
-        List<Artista> art=new ArrayList<Artista>();
+        List<Obra> art=new ArrayList<Obra>();
 
         try {
             // Executing a SQL query
-            System.out.println("=> Listing artista...");
+            System.out.println("=> Listing obra...");
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM artist";
+            String sql = "SELECT * FROM obra";
             ResultSet rs = stmt.executeQuery(sql);
 
             // Reading data from result set row by row
             while (rs.next()) {
                 // Extracting row values by column name
-                String email = rs.getString("email");
-                Integer fcoins = rs.getInt("fcoins");
+                Integer colecctionid=rs.getInt("colecctionid");
+                Integer pieceid= rs.getInt("pieceid");
+                String  imagen= rs.getString("imagen");
+                String titulo=rs.getString("titulo");
+
 
                 // Creating a new UserApp class instance and adding it to the array list
-                art.add(new Artista(email,fcoins));
+                art.add(new Obra(colecctionid,pieceid,imagen,titulo));
 
             }
 
             // Printing results
-            System.out.println("Email | fcoins");
-            for (Artista arte : art) {
-                System.out.println(arte.getEmail()+" | "+arte.getFcoins());
+            System.out.println("colcctionid | precio |imgen|titulo");
+            for (Obra obra : art) {
+                System.out.println(obra.getColecction()+" | "+obra.getPieceid()+" | "+obra.getImagen()+" | "+obra.getTitulo());
             }
 
             // Printing total rows
@@ -96,7 +98,3 @@ public class ArtistaService {
         }
     }
 }
-
-
-
-
