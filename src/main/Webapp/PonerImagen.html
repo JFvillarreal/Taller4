@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload avatar</title>
+  <link rel="stylesheet" href="./ponerImagen.css">
+</head>
+<body class="fondo">
+
+<h2 class="titulo1">Postear Imagen</h2>
+<form id="avatar-form" class="pedidos" action="./api/users/fabian/avatars" method="POST" enctype="multipart/form-data">
+  File: <input type="file" name="imagen" />
+  Nombre: <input type="text" name="nombre" />
+  <input type="submit" value="Upload!" />
+</form>
+
+<br /><br />
+<!--
+<h3>Controlling form from JS => Redirection, if required, need to be explicitly specified</h3>
+<form id="avatar-form">
+  File: <input type="file" name="avatar" />
+  Filename: <input type="text" name="filename" />
+  <input type="submit" value="Upload!" />
+</form>
+!-->
+
+<script>
+  // Getting form by Id
+  let avatarForm = document.getElementById("avatar-form");
+
+  // Triggering event when submit
+  avatarForm.onsubmit = async (e) => {
+    e.preventDefault();
+
+    // Making the request
+    let response = await fetch("./api/Users/fabian/imagen", {
+      method: "POST",
+      body: new FormData(avatarForm)
+    });
+
+    // Extracting response as text
+    let message = await response.text();
+
+    alert("si estamos melo");
+    window.location.href = "http://localhost:8080/Taller4-1.0-SNAPSHOT/Artista.html";
+  };
+</script>
+</body>
+</html>

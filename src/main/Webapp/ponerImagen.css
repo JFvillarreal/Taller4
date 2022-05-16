@@ -1,0 +1,25 @@
+:root{
+    --blanco: #FFFFFF;
+    --negro: #000000;
+    --amarillo: #FFC107;
+    --azul: #0097A7;
+    --gris: #757575;
+    --rojo: #F40D1F;
+
+    --fuente-principal: 3.8rem;
+
+}
+.fondo {
+    heigh:665px;
+    background-image: url(./img/Mona.jpg);
+    background-size: 10rem;
+
+
+    }
+.pedidos{
+    height: 50px;
+    background: #f5f1f1;
+}
+.titulo1{
+color: #F40D1F;
+}
