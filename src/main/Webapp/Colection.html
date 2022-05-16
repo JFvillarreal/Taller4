@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>colection</title>
 </head>
-<body>
+<body >
 <H1 class="titulo">Coleccion
     <span></span></H1>
 <div class="Colection">
@@ -13,17 +13,29 @@
          colection:<input type="text" placeholder="Enter Colection"  name="Colection" required>
 
            </div>
-
+    <form id = "formulario">
      <div class="descripcion">
         <h3 class="definicion"> descriccion:</h3>
+
        <textarea id="w3review" type="text" placeholder="Enter Colection"  rows="4" cols="50" style="width: 187px; height: 88px;">
            </textarea>
+         <input  type="submit" value="Upload!" />
+
+         <script></script>
     </div>
 
 
 
 
+
     </form>
+    <script>
+        var formulario = document.getElementById("formulario");
+        addEventListener("submit",function (e){
+            e.preventDefault();
+            window.location.href ="http://localhost:8080/Taller4-1.0-SNAPSHOT/PonerImagen.html";
+        })
+    </script>
 </div>
 </body>
 </html>
