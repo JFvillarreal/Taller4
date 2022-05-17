@@ -36,12 +36,12 @@ public class Main {
             Usuaarioresorce usersService = new Usuaarioresorce(conn);
             usersService.listusers();
 
-            ArtistaService artista = new ArtistaService(conn);
             //artista.updateartist(new Artista("hugo@gmail.com", 250));
             artista.listartista();
 
             CoustumerService costumer = new CoustumerService(conn);
             //costumer.updatecoustumer(new Coustomer("h@gmail.com", 40));
+
             costumer.listarcoustumer();
 
             ColecctionService col= new ColecctionService(conn);
