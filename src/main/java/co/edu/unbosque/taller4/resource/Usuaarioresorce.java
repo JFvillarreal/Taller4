@@ -12,7 +12,7 @@ public class Usuaarioresorce {
         this.conn=conn;
     }
 
-    public void listusers(){
+    public List listusers(){
         Statement stmt=null;
 
         List<Usuario> lista_usuarios =new ArrayList<Usuario>();
@@ -30,10 +30,10 @@ public class Usuaarioresorce {
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
-                String username=rs.getString("username");
+                //String username=rs.getString("username");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                lista_usuarios.add(new Usuario(email, password, role,username));
+                lista_usuarios.add(new Usuario(email, password, role,null));
             }
 
             // Printing results
@@ -58,11 +58,12 @@ public class Usuaarioresorce {
                 se.printStackTrace();
             }
         }
+        return lista_usuarios;
     }
     public Connection connect() throws SQLException {
-        String url="jdbc:postgresql://localhost/postgres";
+        String url="jdbc:postgresql://localhost/Arte";
         String user="postgres";
-        String password="Holapgadmin1999";
+        String password="";
         return DriverManager.getConnection(url, user, password);
     }
 
