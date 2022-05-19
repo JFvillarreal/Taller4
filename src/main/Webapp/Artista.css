@@ -1,4 +1,15 @@
 
+:root{
+    --blanco: #FFFFFF;
+    --negro: #000000;
+    --amarillo: #FFC107;
+    --azul: #0097A7;
+    --gris: #757575;
+    --rojo: #F40D1F;
+
+    --fuente-principal: 3.8rem;
+
+}
 .ref1{
     width: 300px;
     height: 420px;
@@ -10,4 +21,43 @@
     box-sizing: border-box;
     padding: 70px 30px;
 
+}
+body {
+     heigh:665px;
+     background-image: url("https://lamenteesmaravillosa.com/wp-content/uploads/2019/02/cerebro-coloreado.jpg");
+     background-size: 30rem;
+
+ }
+.loginbox{
+    width: 303px;
+    height: 470px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50% ,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+
+}
+.centrado{
+    position: relative;
+    margin-bottom:35px;
+    text-align:right;
+}
+.botones{
+    text-decoration:none;
+    font-weight:600;
+    font-size:20px;
+    color:#ffffff;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:150px;
+    padding-right:150px;
+    background-color: #3863ce;
+}
+.boton1{
+    font-size: 9px;
+    padding-right: 150px;
 }

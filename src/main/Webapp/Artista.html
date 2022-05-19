@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="./Artista.css">
 </head>
-<body style="background: #1B2678">
+<body >
 <header style="background: black" id="header"></header>
 <script>
     var header= document.getElementById("header");
@@ -15,20 +15,41 @@
     titulo.innerText=localStorage.getItem("username");
     header.appendChild(titulo);
 </script>
-<h1>Generate new art piece</h1>
-<form  action="./api/Users/imagen" method="post" enctype="multipart/form-data" style="background: #6ACA1B">
 
-Precio: <input type="text"  name="fcoins"/>
-Put your username again please: <input type="text" name="artist">
-titulo: <input type="text" name="titulo">
+<form class="loginbox" action="./api/Users/imagen" method="post" enctype="multipart/form-data">
+    <h3>Secicion Artista</h3>
+    <div class="centrado">
+        <label> Precio </label>
+        <input type="text" placeholder="fcoins" name="fcoins">
 
-colecction:  <input type="text" name="colecction">
+    </div>
+    <div class="centrado">
+        <label> usuario: </label>
+        <input type="text" placeholder="artist" name="artist">
 
-Choose a file: <input type="file" name="multiPartServlet"  />
-<input type="submit" value="Upload" enctype="multipart/form-data"/>
+    </div>
+
+    <div class="centrado">
+        <label> Titulo </label>
+        <input type="text" placeholder="Titulo" name="titulo">
+
+    </div>
+    <div class="centrado">
+        <label> colecction </label>
+        <input type="text" placeholder="colecction" name="colecction">
+
+    </div>
+    <div class="centrado">
+        <label>  archivo </label>
+        <input class="boton1" type="file"  placeholder="archivo" name="multiPartServlet">
+
+    </div>
+    <input type="submit" value="Upload" enctype="multipart/form-data"/>
 </form>
 
-<a href="./recargar.html" style="background: #65FF33" style="color: #FFFFFF" > Loaded your count</a>
+<a class="botones" href="./recargar.html"   > Loaded your count</a>
+<a class="botones" href="./Colection.html"   > coleccion</a>
+<a class="botones" href="./PonerImagen.html" > obra</a>
 
 
 </body>
