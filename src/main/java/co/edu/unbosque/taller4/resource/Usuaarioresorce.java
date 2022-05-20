@@ -30,10 +30,10 @@ public class Usuaarioresorce {
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
-                //String username=rs.getString("username");
+                String username=rs.getString("username");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                lista_usuarios.add(new Usuario(email, password, role,null));
+                lista_usuarios.add(new Usuario(email, password, role,username));
             }
 
             // Printing results
@@ -61,13 +61,14 @@ public class Usuaarioresorce {
         return lista_usuarios;
     }
     public Connection connect() throws SQLException {
-        String url="jdbc:postgresql://localhost/Arte";
+        String url="jdbc:postgresql://localhost/postgres";
         String user="postgres";
-        String password="";
+        String password="Holapgadmin1999";
         return DriverManager.getConnection(url, user, password);
     }
 
     public long insertuser(Usuario user){
+        System.out.print("se esta pasando por la funcion de insertuser");
         String SQL= "INSERT INTO usuario(email, password, role,username)"+"VALUES(?,?,?,?)";
         long id=0;
         try (Connection conn = connect();
@@ -85,12 +86,15 @@ public class Usuaarioresorce {
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
                         id = rs.getLong(1);
+                        System.out.println("se esta ingresando el artista en linea 88");
                     }
                 } catch (SQLException ex) {
+                    System.out.println("se esta pasasndo por la primera exception");
                     System.out.println(ex.getMessage());
                 }
             }
         } catch (SQLException ex) {
+            System.out.print("se esta pasasndo por el segundo error");
             System.out.println(ex.getMessage());
         }
         return id;

@@ -103,7 +103,7 @@ public class ArtistaService {
         return DriverManager.getConnection(url, user, password);
     }
     public long insertArtist(Artista artista){
-        String SQL= "INSERT INTO usuario(email, fcoins,password)"+"VALUES(?,?,?)";
+        String SQL= "INSERT INTO artist(email, fcoins,password) VALUES(?,?,?)";
         long id=0;
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL,

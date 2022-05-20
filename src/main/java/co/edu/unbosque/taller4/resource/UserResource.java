@@ -26,8 +26,8 @@ import java.util.List;
 @Path("/Users")
 public class UserResource {
     static final String USER = "postgres";
-    static final String PASS = "";
-    static final String DB_URL = "jdbc:postgresql://localhost/Arte";
+    static final String PASS = "Holapgadmin1999";
+    static final String DB_URL = "jdbc:postgresql://localhost/postgres";
     Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
     @Context
     ServletContext context;
@@ -68,7 +68,7 @@ public class UserResource {
     @Path("/found")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response found(Usuario user){
+    public Response found(User user){
         Usuaarioresorce bass =new Usuaarioresorce(conn);
         Usuario n=new Usuario(null,null,null,null);
         String username_n=user.getUsername();
@@ -86,11 +86,18 @@ public class UserResource {
                 .orElse(null);
         System.out.println("linea 62");
         if (user_n != null) {
+            System.out.println("este es el username en java "+user_n.getUsername());
+            System.out.println("este es el password en java "+user_n.getPassword());
+            System.out.println("este es el role en java "+user_n.getRole());
+            System.out.println("este es el email en java "+user_n.getEmail());
+            user.setUsername(user_n.getUsername());
+            user.setPassword(user_n.getPassword());
+            user.setRole(user_n.getRole());
             System.out.println("linea 64");
             System.out.println("linea nueva 65");
             System.out.println("Este el email usuario "+ user_n.getEmail());
             return Response.ok()
-                    .entity(user_n)
+                    .entity(user)
                     .build();
         } else {
             System.out.println("esta es la linea 111");
@@ -154,13 +161,23 @@ public class UserResource {
             CoustumerService costuemrservice=new CoustumerService(conn);
             Usuario user_n=new Usuario(email,password,role,username);
             usersService.insertuser(user_n);
+            System.out.println("estes es el email "+user_n.getEmail());
+            System.out.println("estes es el password "+user_n.getPassword());
+            System.out.println("estes es el role "+user_n.getRole());
+            System.out.println("estes es el username "+user_n.getUsername());
+            System.out.println("se esta pasasndo despues de crear usuario");
             if(user_n.getRole().equals("Artist")){
-                Artista artist=new Artista(email,0,password);
-                artistaservice.insertArtist(artist);
+                System.out.println("se esta ingresando el artista");
+                Artista nuevo_artista=new Artista(user_n.getEmail(),0,user_n.getPassword());
+                artistaservice.insertArtist(nuevo_artista);
+                System.out.println("se esta pasasndo despues de la insercion");
             }else if(user_n.getRole().equals("Costumer")){
-                Coustomer costumer=new Coustomer(email,0,password);
-                costuemrservice.insertArtist(costumer);
+                System.out.println("se esta ingresando el costumer");
+                Coustomer new_costumer=new Coustomer(user_n.getEmail(),0,user_n.getPassword());
+                costuemrservice.insertArtist(new_costumer);
+                System.out.println("se esta pasasndo despues de la insercion");
             }
+
             return Response.created(UriBuilder.fromResource(UserResource.class).path(username).build())
                     .entity(user)
                     .build();
