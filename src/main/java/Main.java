@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 
 public class Main {
     static final String JDBC_DRIVER = "org.postgresql.Driver";
-    static final String DB_URL = "jdbc:postgresql://localhost/Arte";
+    static final String DB_URL = "jdbc:postgresql://localhost";
 
     // Database credentials
     static final String USER = "postgres";
@@ -37,7 +37,7 @@ public class Main {
             usersService.listusers();
 
             //artista.updateartist(new Artista("hugo@gmail.com", 250));
-            artista.listartista();
+
 
             CoustumerService costumer = new CoustumerService(conn);
             //costumer.updatecoustumer(new Coustomer("h@gmail.com", 40));
