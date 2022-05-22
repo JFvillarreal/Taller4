@@ -165,6 +165,7 @@ public class UserResource {
         String contextPath =context.getRealPath("") + File.separator;
 
         try {
+            User nuevo= new User();
             User user = new UserService().createUser(username, password, role,email, contextPath);
            System.out.println("Estes es el rol"+ role);
 
