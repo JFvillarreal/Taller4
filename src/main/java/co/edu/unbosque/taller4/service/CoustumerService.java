@@ -48,7 +48,7 @@ public class CoustumerService {
         }
     }
 
-    public void listarcoustumer(){
+    public List<Coustomer> listarcoustumer(){
         Statement stmt=null;
 
         List<Coustomer> cos=new ArrayList<Coustomer>();
@@ -94,6 +94,7 @@ public class CoustumerService {
                 se.printStackTrace();
             }
         }
+        return cos;
     }
     public Connection connect() throws SQLException {
         String url="jdbc:postgresql://localhost/postgres";

@@ -49,7 +49,7 @@ public class ArtistaService {
         }
     }
 
-    public void listartista(){
+    public List<Artista> listartista(){
         Statement stmt=null;
 
         List<Artista> art=new ArrayList<Artista>();
@@ -95,6 +95,7 @@ public class ArtistaService {
                 se.printStackTrace();
             }
         }
+        return art;
     }
     public Connection connect() throws SQLException {
         String url="jdbc:postgresql://localhost/postgres";

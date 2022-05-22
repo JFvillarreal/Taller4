@@ -70,6 +70,8 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response found(User user){
         Usuaarioresorce bass =new Usuaarioresorce(conn);
+        ArtistaService bassa=new ArtistaService(conn);
+        CoustumerService bassc=new CoustumerService(conn);
         Usuario n=new Usuario(null,null,null,null);
         String username_n=user.getUsername();
         String password_n=user.getPassword();
@@ -93,6 +95,16 @@ public class UserResource {
             user.setUsername(user_n.getUsername());
             user.setPassword(user_n.getPassword());
             user.setRole(user_n.getRole());
+            if(user.getRole().equals("Artist")){
+                List<Artista> artistas=bassa.listartista();
+                Artista artista=artistas.stream().filter(u -> u.getEmail().equals(username_n) && u.getPassword().equals(password_n)).findFirst()
+                        .orElse(null);
+                user.setFcoins(Integer.toString(artista.getFcoins()));
+            }else if(user.getRole().equals("Costumer")){
+                List<Coustomer> coustomers=bassc.listarcoustumer();
+                Coustomer costum=coustomers.stream().filter(u -> u.getEmail().equals(username_n) && u.getPassword().equals(password_n)).findFirst().orElse(null);
+                user.setFcoins(Integer.toString(costum.getFcoins()) );
+            }
             System.out.println("linea 64");
             System.out.println("linea nueva 65");
             System.out.println("Este el email usuario "+ user_n.getEmail());
