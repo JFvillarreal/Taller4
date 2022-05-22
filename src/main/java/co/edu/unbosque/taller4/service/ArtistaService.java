@@ -67,9 +67,10 @@ public class ArtistaService {
                 String email = rs.getString("email");
                 Integer fcoins = rs.getInt("fcoins");
                 String password=rs.getString("password");
+                String descrip=rs.getString("descripcion");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                art.add(new Artista(email,fcoins,password));
+                art.add(new Artista(email,fcoins,password,descrip));
 
             }
 
