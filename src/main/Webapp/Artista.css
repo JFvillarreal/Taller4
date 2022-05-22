@@ -22,6 +22,7 @@
     padding: 70px 30px;
 
 }
+
 body {
      heigh:665px;
      background-image: url("https://lamenteesmaravillosa.com/wp-content/uploads/2019/02/cerebro-coloreado.jpg");
@@ -30,10 +31,15 @@ body {
  }
 .loginbox{
     width: 303px;
+
     height: 470px;
     background:linear-gradient(rgba(5,7,12,0.20),rgba(5,7,12,0.20));
+=======
+    height: 430px;
+    background: #000;
+
     color: #fff;
-    top: 50%;
+    top: 65%;
     left: 50%;
     position: absolute;
     transform: translate(-50% ,-50%);
@@ -61,3 +67,7 @@ body {
     font-size: 9px;
     padding-right: 150px;
 }
+h1{
+    color: whitesmoke;
+}
+

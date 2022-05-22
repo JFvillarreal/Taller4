@@ -3,19 +3,24 @@ package co.edu.unbosque.taller4.Dto;
 public class Artista {
     private String email;
     private Integer fcoins;
+    private String password;
 
 
 
-    public Artista(String email, Integer fcoins) {
+    public Artista(String email, Integer fcoins,String password) {
         this.email = email;
-
-
         this.fcoins=fcoins;
+        this.password=password;
     }
 
 
+    public String getPassword() {
+        return password;
+    }
 
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;

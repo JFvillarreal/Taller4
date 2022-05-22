@@ -48,7 +48,7 @@ public class CoustumerService {
         }
     }
 
-    public void listarcoustumer(){
+    public List<Coustomer> listarcoustumer(){
         Statement stmt=null;
 
         List<Coustomer> cos=new ArrayList<Coustomer>();
@@ -65,16 +65,17 @@ public class CoustumerService {
                 // Extracting row values by column name
                 String email = rs.getString("email");
                 Integer fcoins = rs.getInt("fcoins");
+                String password = rs.getString("password");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                cos.add(new Coustomer(email,fcoins));
+                cos.add(new Coustomer(email,fcoins,password));
 
             }
 
             // Printing results
-            System.out.println("Email | fcoins");
+            System.out.println("Email | fcoins | password");
             for (Coustomer coscu : cos) {
-                System.out.println(coscu.getEmail()+" | "+coscu.getFcoins());
+                System.out.println(coscu.getEmail()+" | "+coscu.getFcoins()+" | "+coscu.getPassword());
             }
 
             // Printing total rows
@@ -93,6 +94,40 @@ public class CoustumerService {
                 se.printStackTrace();
             }
         }
+        return cos;
+    }
+    public Connection connect() throws SQLException {
+        String url="jdbc:postgresql://localhost/postgres";
+        String user="postgres";
+        String password="Holapgadmin1999";
+        return DriverManager.getConnection(url, user, password);
+    }
+    public long insertArtist(Coustomer costumer){
+        String SQL= "INSERT INTO costumer(email, fcoins,password)"+"VALUES(?,?,?)";
+        long id=0;
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL,
+                     Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, costumer.getEmail());
+            pstmt.setInt(2, costumer.getFcoins());
+            pstmt.setString(3, costumer.getPassword());
+            int affectedRows = pstmt.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        id = rs.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return id;
     }
 }
 
