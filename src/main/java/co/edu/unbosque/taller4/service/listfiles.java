@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class listfiles extends HttpServlet {
-    private String UPLOAD_DIRECTORY = "uploads";
+    private String UPLOAD_DIRECTORY = "imagen";
     private ImageServices imageServices;
     public listfiles(){
         this.imageServices=new ImageServices();
@@ -39,8 +39,7 @@ public class listfiles extends HttpServlet {
 
 
         for(int i=0;i< uploadDir.listFiles().length;i++){
-            files.add(UPLOAD_DIRECTORY + File.separator + uploadDir.listFiles()[i].getName()+"&&"+piezas.get(i).getArtist()+"&&"+
-                    piezas.get(i).getPrecio()+"&&"+piezas.get(i).getTitulo());
+            files.add(UPLOAD_DIRECTORY + File.separator + "Captura de pantalla (6).png");
         }
 
         // Adding the data to response, parsing it to json using Gson library

@@ -17,7 +17,7 @@
 </script>
 <h1>Pictures avaibles</h1>
 <div id="images"  ></div>
-
+<div style="background: black" id="contenedor1"><h2 id="letras"></h2></div>
 <script>
 
     var imagesDiv = document.getElementById("images");
@@ -54,6 +54,14 @@
                 imagesDiv.appendChild(precio);
             });
         });
+</script>
+<script>
+    var contenedor=document.getElementById("contenedor1");
+    let fcoins=document.getElementById("letras");
+
+    fcoins.innerText="estos son los fcoins disponibles "+localStorage.getItem("fcoins");
+    console.log("estos son los fcoins "+localStorage.getItem("fcoins"));
+    contenedor.appendChild(fcoins);
 </script>
 </body>
 </html>

@@ -19,3 +19,11 @@ a{
     padding: 8px 12px;
     text-decoration: none;
 }
+#contenedor1{
+    width: 760px;
+    height: 60px;
+    background: black;
+}
+h2{
+    color: whitesmoke;
+}

@@ -226,7 +226,7 @@ public class UserResource {
         int saldo = Integer.parseInt(fcoins);
 
         Usuario user_n = users.stream()
-                .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
+                .filter(u -> u.getEmail().equals(username) && u.getPassword().equals(password))
                 .findFirst()
                 .orElse(null);
 
@@ -235,7 +235,7 @@ public class UserResource {
         if(user_n.getRole().equals("Artist")){
             List<Artista> art=artistaservice.listartista();
             Artista art_n = art.stream()
-                    .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
+                    .filter(u -> u.getEmail().equals(username) && u.getPassword().equals(password))
                     .findFirst()
                     .orElse(null);
             artistaservice.updateartist(new Artista(username,art_n.getFcoins()+saldo,password));
@@ -245,7 +245,7 @@ public class UserResource {
         else if(user_n.getRole().equals("Costumer")){
             List<Coustomer> cos=costuemrservice.listarcoustumer();
             Coustomer cos_n = cos.stream()
-                    .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
+                    .filter(u -> u.getEmail().equals(username) && u.getPassword().equals(password))
                     .findFirst()
                     .orElse(null);
             costuemrservice.updatecoustumer(new Coustomer(username,cos_n.getFcoins()+saldo,password));
