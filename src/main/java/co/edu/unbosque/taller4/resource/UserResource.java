@@ -215,36 +215,56 @@ public class UserResource {
         ArtistaService artistaservice=new ArtistaService(conn);
         CoustumerService costuemrservice=new CoustumerService(conn);
 
-        System.out.println("linea 85");
+        System.out.println("linea 218");
         List<Usuario> users = bass.listusers();
         System.out.println(username+" este es el username");
         System.out.println(password+" este es el password");
         System.out.println(fcoins+" este es fcoins");
         System.out.println();
+
         int saldo = Integer.parseInt(fcoins);
+
         Usuario user_n = users.stream()
                 .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
                 .findFirst()
                 .orElse(null);
 
-        System.out.println("linea 62");
+        System.out.println("linea 232");
+        if (user_n!=null){
         if(user_n.getRole().equals("Artist")){
-            
-            artistaservice.updateartist(new Artista(username,saldo,password));
+            List<Artista> art=artistaservice.listartista();
+            Artista art_n = art.stream()
+                    .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
+                    .findFirst()
+                    .orElse(null);
+            artistaservice.updateartist(new Artista(username,art_n.getFcoins()+saldo,password));
 
 
         }
-        else if(user_n.getRole().equals("Coustumer")){
-            costuemrservice.updatecoustumer(new Coustomer(username,saldo,password));
+        else if(user_n.getRole().equals("Costumer")){
+            List<Coustomer> cos=costuemrservice.listarcoustumer();
+            Coustomer cos_n = cos.stream()
+                    .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
+                    .findFirst()
+                    .orElse(null);
+            costuemrservice.updatecoustumer(new Coustomer(username,cos_n.getFcoins()+saldo,password));
 
+        }
+            System.out.println("linea 253");
+            System.out.println("linea nueva 254");
+            System.out.println("Este el email usuario "+ user_n.getEmail());
+            return Response.ok()
+                    .entity(user_n)
+                    .build();
 
         }
 
-
-
-
-
-            return null;
+        else {
+            System.out.println("esta es la linea 263");
+            return Response.status(404)
+                    .entity(new ExceptionMessage(404, "User not found"))
+                    .build();
+        }
     }
     @POST
     @Path("/formindex")
