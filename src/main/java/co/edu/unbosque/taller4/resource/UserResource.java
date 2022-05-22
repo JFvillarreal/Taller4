@@ -158,6 +158,7 @@ public class UserResource {
             @FormParam("username") String username,
             @FormParam("password") String password,
             @FormParam("role") String role,
+            @FormParam("descripcion")String descrip,
             @FormParam("email")String email
     ){
         System.out.println("linea 91");
@@ -180,7 +181,7 @@ public class UserResource {
             System.out.println("se esta pasasndo despues de crear usuario");
             if(user_n.getRole().equals("Artist")){
                 System.out.println("se esta ingresando el artista");
-                Artista nuevo_artista=new Artista(user_n.getEmail(),0,user_n.getPassword());
+                Artista nuevo_artista=new Artista(user_n.getEmail(),0,user_n.getPassword(),descrip);
                 artistaservice.insertArtist(nuevo_artista);
                 System.out.println("se esta pasasndo despues de la insercion");
             }else if(user_n.getRole().equals("Costumer")){
@@ -237,7 +238,7 @@ public class UserResource {
                     .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
                     .findFirst()
                     .orElse(null);
-            artistaservice.updateartist(new Artista(username,art_n.getFcoins()+saldo,password));
+            artistaservice.updateartist(new Artista(username,art_n.getFcoins()+saldo,password,art_n.getDescrip()));
 
 
         }
