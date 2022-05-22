@@ -186,6 +186,54 @@ public class UserResource {
         }
 
     }
+
+    @POST
+    @Path("/recargar")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response  recarcgar(
+            @FormParam("username") String username,
+            @FormParam("password") String password,
+            @FormParam("fcoins") String fcoins
+
+    ){
+
+
+        Usuaarioresorce bass =new Usuaarioresorce(conn);
+        ArtistaService artistaservice=new ArtistaService(conn);
+        CoustumerService costuemrservice=new CoustumerService(conn);
+
+        System.out.println("linea 85");
+        List<Usuario> users = bass.listusers();
+        System.out.println(username+" este es el username");
+        System.out.println(password+" este es el password");
+        System.out.println(fcoins+" este es fcoins");
+        System.out.println();
+        int saldo = Integer.parseInt(fcoins);
+        Usuario user_n = users.stream()
+                .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
+                .findFirst()
+                .orElse(null);
+
+        System.out.println("linea 62");
+        if(user_n.getRole().equals("Artist")){
+            
+            artistaservice.updateartist(new Artista(username,saldo,password));
+
+
+        }
+        else if(user_n.getRole().equals("Coustumer")){
+            costuemrservice.updatecoustumer(new Coustomer(username,saldo,password));
+
+
+        }
+
+
+
+
+
+            return null;
+    }
     @POST
     @Path("/formindex")
     @Produces(MediaType.APPLICATION_JSON)
@@ -274,6 +322,8 @@ public class UserResource {
 
           return Response.temporaryRedirect(new URI(StringUtils.join("http://localhost:8080/Taller4-1.0-SNAPSHOT/LoadS.jsp"))).build();
       }
+
+
 }
 
 
