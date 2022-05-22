@@ -61,5 +61,17 @@
 
 <h1>your count have <%=  request.getAttribute("fcoins") %> Fcoins</h1>
 <a href="./recargar.html" style="background: #65FF33" style="color: #FFFFFF" > Loaded your count</a>
+<form action="../../form-result.php" method="post" target="_blank">
+
+    <p>
+        coleccion: <input type="search" name="busquedacoleccion" >
+        imagen: <input type="search" name="busquedaimagen" >
+
+        <input type="submit" value="Buscar">
+
+    </p>
+
+</form>
+
 </body>
 </html>
