@@ -19,14 +19,21 @@ formulario.addEventListener("submit",function(e){
         .then(res =>
             res.json()
         )
-        .then(data => {
+        .then(dato => {
             console.log("se esta intentando tener el dato")
-            console.log(data)
-            console.log(data["username"]+" este es el username");
-            localStorage.setItem("username",data["username"]);
-            localStorage.setItem("role",data["role"]);
-            localStorage.setItem("role",data["fcoins"]);
-            window.location.href = "http://localhost:8080/Taller4-1.0-SNAPSHOT/Artista.html";
+            console.log(dato)
+            console.log(dato["username"]+" este es el username");
+            console.log(dato["fcoins"]+" estes cantidad de fcoins");
+            localStorage.setItem("username",dato["username"]);
+            localStorage.setItem("role",dato["role"]);
+            localStorage.setItem("fcoins",dato["fcoins"]);
+            console.log("cambipo nuevo en javascript");
+            console.log("este es el rol "+dato["role"]);
+            if(dato["role"] == "Artist"){
+                window.location.href = "http://localhost:8080/Taller4-1.0-SNAPSHOT/Artista.html";
+            }else if(dato["role"] == "Costumer"){
+                window.location.href = "http://localhost:8080/Taller4-1.0-SNAPSHOT/comprador.html";
+            }
         })
 
 })
