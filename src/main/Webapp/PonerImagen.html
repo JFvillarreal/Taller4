@@ -9,8 +9,13 @@
 
 <h2 class="titulo1">Postear Imagen</h2>
 <form id="avatar-form" class="pedidos" action="./api/users/fabian/avatars" method="POST" enctype="multipart/form-data">
-  File: <input type="file" name="imagen" />
+
   Nombre: <input type="text" name="nombre" />
+  <div > File:</div>
+  <div  class="archivo">
+  <p> add file</p>
+  <input class="imagen" type="file" name="imagen"></div>
+
   <input type="submit" value="Upload!" />
 </form>
 

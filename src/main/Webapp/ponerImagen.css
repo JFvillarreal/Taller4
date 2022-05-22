@@ -17,9 +17,36 @@
 
     }
 .pedidos{
-    height: 50px;
-    background: #f5f1f1;
+    position: relative;
+    margin-bottom:35px;
+    width: 325px;
+    height: 470px;
+    background:linear-gradient(rgba(5,7,12,0.70),rgba(5,7,12,0.70));
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50% ,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
 }
 .titulo1{
 color: #F40D1F;
+}
+.archivo{
+position: relative;
+    margin: 50px;
+    padding: 10px;
+    width: 150px;
+    background-color: black;
+}
+.imagen{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100px;
+    height: 100px;
+    opacity: 0;
 }
