@@ -35,9 +35,10 @@ public class ArtesResource {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
 
-    public Response uploadFile(@PathParam("username") String username, MultipartFormDataInput input) {
+    public Response uploadFile(@PathParam("username") String username ,@FormParam("nombre") String nombre, MultipartFormDataInput input) {
         String fileName = "";
-
+        String filename2="";
+        System.out.println("este es el username "+nombre);
         try {
             // Getting the file from form input
             Map<String, List<InputPart>> formParts = input.getFormDataMap();
@@ -46,10 +47,13 @@ public class ArtesResource {
             if (formParts.get("filename") != null) {
                 fileName = formParts.get("filename").get(0).getBodyAsString();
             }
-
+            if(formParts.get("nombre") != null){
+                filename2 = formParts.get("nombre").get(0).getBodyAsString();
+            }
             // Extracting multipart by input name
-            List<InputPart> inputParts = formParts.get("imagen");
 
+            List<InputPart> inputParts = formParts.get("imagen");
+            System.out.println("este es el filename2 "+ filename2);
             for (InputPart inputPart : inputParts) {
                 // If file name is not specified as input, use default file name
                 if (fileName.equals("") || fileName == null) {
@@ -62,7 +66,7 @@ public class ArtesResource {
                 InputStream istream = inputPart.getBody(InputStream.class,null);
 
                 // Saving the file on disk
-                saveFile(istream, fileName, context);
+                saveFile(istream,   filename2, context);
             }
 
             return Response.status(201)
