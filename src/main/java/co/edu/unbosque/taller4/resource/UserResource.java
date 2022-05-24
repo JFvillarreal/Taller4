@@ -100,6 +100,7 @@ public class UserResource {
                 Artista artista=artistas.stream().filter(u -> u.getEmail().equals(username_n) && u.getPassword().equals(password_n)).findFirst()
                         .orElse(null);
                 user.setFcoins(Integer.toString(artista.getFcoins()));
+                user.setDescrip(artista.getDescrip());
             }else if(user.getRole().equals("Costumer")){
                 List<Coustomer> coustomers=bassc.listarcoustumer();
                 Coustomer costum=coustomers.stream().filter(u -> u.getEmail().equals(username_n) && u.getPassword().equals(password_n)).findFirst().orElse(null);
@@ -158,7 +159,7 @@ public class UserResource {
             @FormParam("username") String username,
             @FormParam("password") String password,
             @FormParam("role") String role,
-            @FormParam("descripcion")String descrip,
+            @FormParam("descricion")String descrip,
             @FormParam("email")String email
     ){
         System.out.println("linea 91");
@@ -179,6 +180,7 @@ public class UserResource {
             System.out.println("estes es el password "+user_n.getPassword());
             System.out.println("estes es el role "+user_n.getRole());
             System.out.println("estes es el username "+user_n.getUsername());
+            System.out.println("esta es la descripcion "+descrip);
             System.out.println("se esta pasasndo despues de crear usuario");
             if(user_n.getRole().equals("Artist")){
                 System.out.println("se esta ingresando el artista");
