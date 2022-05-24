@@ -54,11 +54,11 @@
     let titulo= document.createElement("h1");
     let fcoins=document.createElement("h1");
     let descripcion=document.createElement("h3");
-    console.log(localStorage.getItem("descripcion")+" este es el fcoins de el localstorage con window");
+    console.log(localStorage.getItem("descrip")+" esta es la descripcion el localstorage con window");
     console.log(localStorage.getItem("fcoins")+" este es el fcoins de el localstorage con window");
     titulo.innerText=localStorage.getItem("username");
     fcoins.innerText="Your count have  "+localStorage.getItem("fcoins")+" fcoins";
-    descripcion.innerText="Your descrpcion is: "+localStorage.getItem("descripcion");
+    descripcion.innerText="Your descrpcion is: "+localStorage.getItem("descrip");
     contenedor.appendChild(fcoins);
     contenedor.appendChild(descripcion);
     header.appendChild(titulo);
