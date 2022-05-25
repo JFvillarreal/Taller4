@@ -48,7 +48,7 @@ public class ArtesResource {
                 fileName = formParts.get("filename").get(0).getBodyAsString();
             }
             if(formParts.get("nombre") != null){
-                filename2 = formParts.get("nombre").get(0).getBodyAsString();
+                filename2 = formParts.get("nombre").get(0).getBodyAsString()+".jpg";
             }
             // Extracting multipart by input name
 

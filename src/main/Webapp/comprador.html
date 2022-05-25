@@ -23,14 +23,14 @@
     var imagesDiv = document.getElementById("images");
 
     // Making a fetch call to the servlet
-    fetch("list-files")
+    fetch("./api/Arte/listfiles")
         .then(response => response.json())
         .then(images => {
             images.map(image => {
                 // Creating the image element in DOM
                 let imgElem = document.createElement("img");
                 var  array=image.split("&&");
-                imgElem.src = "./" + array[0];
+                imgElem.src = "./" + image;
                 imgElem.width = 200;
                 let nautor=document.createElement("h2");
                 let titele= document.createElement("h1");
