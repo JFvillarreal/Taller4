@@ -23,7 +23,7 @@ public class ArteResource {
     @Context
     ServletContext context;
 
-    @GET
+    /*@GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response list() {
 
@@ -38,12 +38,13 @@ public class ArteResource {
         } catch (IOException e) {
             return Response.serverError().build();
         }
-    }
+    }*/
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Pieza pieza) {
+        System.out.println("se esta ingresando en la funcion de Arteresource");
         String contextPath =context.getRealPath("") + File.separator;
 
         try {
@@ -113,11 +114,11 @@ public class ArteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getimages(){
         System.out.print("esta entrando aget images");
-        String uploadpath=context+ File.separator + UPLOAD_DIRECTORY;
+        String uploadpath=context.getRealPath("") + UPLOAD_DIRECTORY;
         File uploadDir = new File(uploadpath);
         List<String> files = new ArrayList<String>();
         for(int i=0;i< uploadDir.listFiles().length;i++){
-            files.add(UPLOAD_DIRECTORY + File.separator + "Captura de pantalla (6).png");
+            files.add(UPLOAD_DIRECTORY + File.separator + "name.jpg");
         }
         return Response.ok().entity(files).build();
     }

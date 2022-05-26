@@ -6,6 +6,8 @@ formulario.addEventListener("submit",function(e){
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value,
     };
+    console.log( document.getElementById("username").value+" ets es el correo en login");
+    localStorage.setItem("email",document.getElementById("username").value);
     console.log(data);
     console.log(data["username"]);
     console.log(data["password"]);

@@ -10,7 +10,8 @@
     <span></span></H1>
 <div class="Colection">
        <div class=" colecion1">
-         colection:<input type="text" placeholder="Enter Colection"  name="Colection" required>
+           name:<input type="text" placeholder="Enter Colection"  name="name" id="name" required>
+           price:<input type="text" placeholder="Enter the price" id="price" required>
 
            </div>
     <form id = "formulario">
@@ -33,6 +34,14 @@
         var formulario = document.getElementById("formulario");
         addEventListener("submit",function (e){
             e.preventDefault();
+            console.log("este es el precio "+document.getElementById("price").value);
+            console.log("este es el email "+localStorage.getItem("email"));
+            console.log("este es el titulo "+document.getElementById("name").value);
+            var data= {
+                    "precio": document.getElementById("price").value,
+                    "email": localStorage.getItem("email"),
+                    "titulo": document.getElementById("name").value
+            };
             window.location.href ="http://localhost:8080/Taller4-1.0-SNAPSHOT/PonerImagen.html";
         })
     </script>
