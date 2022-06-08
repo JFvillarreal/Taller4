@@ -8,19 +8,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
+@Path("/imagenes")
 public class listfiles extends HttpServlet {
-    private String UPLOAD_DIRECTORY = "uploads";
+    private String UPLOAD_DIRECTORY = "imagen";
     private ImageServices imageServices;
     public listfiles(){
         this.imageServices=new ImageServices();
     }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
 
+    public Response list(){
+        String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+        File uploadDir = new File(uploadPath);
+        return null;
+    }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 
@@ -39,8 +51,7 @@ public class listfiles extends HttpServlet {
 
 
         for(int i=0;i< uploadDir.listFiles().length;i++){
-            files.add(UPLOAD_DIRECTORY + File.separator + uploadDir.listFiles()[i].getName()+"&&"+piezas.get(i).getArtist()+"&&"+
-                    piezas.get(i).getPrecio()+"&&"+piezas.get(i).getTitulo());
+            files.add(UPLOAD_DIRECTORY + File.separator + "Captura de pantalla (6).png");
         }
 
         // Adding the data to response, parsing it to json using Gson library

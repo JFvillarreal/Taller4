@@ -17,20 +17,20 @@
 </script>
 <h1>Pictures avaibles</h1>
 <div id="images"  ></div>
-
+<div style="background: black" id="contenedor1"><h2 id="letras"></h2></div>
 <script>
 
     var imagesDiv = document.getElementById("images");
 
     // Making a fetch call to the servlet
-    fetch("list-files")
+    fetch("./api/Arte/listfiles")
         .then(response => response.json())
         .then(images => {
             images.map(image => {
                 // Creating the image element in DOM
                 let imgElem = document.createElement("img");
                 var  array=image.split("&&");
-                imgElem.src = "./" + array[0];
+                imgElem.src = "./" + image;
                 imgElem.width = 200;
                 let nautor=document.createElement("h2");
                 let titele= document.createElement("h1");
@@ -55,6 +55,7 @@
             });
         });
 </script>
+
 <form action="../../form-result.php" method="post" target="_blank">
 
     <p>
@@ -65,5 +66,13 @@
     </p>
 
 </form>
+<script>
+    var contenedor=document.getElementById("contenedor1");
+    let fcoins=document.getElementById("letras");
+
+    fcoins.innerText="estos son los fcoins disponibles "+localStorage.getItem("fcoins");
+    console.log("estos son los fcoins "+localStorage.getItem("fcoins"));
+    contenedor.appendChild(fcoins);
+</script>
 </body>
 </html>

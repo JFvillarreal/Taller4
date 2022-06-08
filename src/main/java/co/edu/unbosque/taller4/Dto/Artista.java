@@ -4,13 +4,15 @@ public class Artista {
     private String email;
     private Integer fcoins;
     private String password;
+    private String descrip;
 
 
 
-    public Artista(String email, Integer fcoins,String password) {
+    public Artista(String email, Integer fcoins,String password,String descrip) {
         this.email = email;
         this.fcoins=fcoins;
         this.password=password;
+        this.descrip=descrip;
     }
 
 
@@ -38,13 +40,21 @@ public class Artista {
         this.fcoins = fcoins;
     }
 
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
     @Override
     public String toString() {
         return "Artista{" +
                 "email='" + email + '\'' +
                 ", fcoins=" + fcoins +
-
-
+                ", password='" + password + '\'' +
+                ", descrip='" + descrip + '\'' +
                 '}';
     }
 }

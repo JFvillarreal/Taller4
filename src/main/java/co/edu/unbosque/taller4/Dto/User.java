@@ -18,6 +18,15 @@ public class User {
     @CsvBindByName
     private String correo;
 
+    private String descrip;
+
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
 
     public String getCorreo() {
         return correo;

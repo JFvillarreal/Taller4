@@ -12,6 +12,11 @@
 
   <div > ID: <input class="aliniado" type = "text" name="ID"></div>
   <div >  Nombre: <input class="aliniado" type="text" name="nombre" /></div>
+  nombre: <input type="text" name="nombre" />
+
+  colecctionid: <input tyoe="text" name="colecctionid">
+
+  precio: <input tyoe="text" name="precio">
 
   <div > File:</div>
   <div  class="archivo">
@@ -39,9 +44,9 @@
   // Triggering event when submit
   avatarForm.onsubmit = async (e) => {
     e.preventDefault();
-
+    console.log("usuario "+localStorage.getItem("username"))
     // Making the request
-    let response = await fetch("./api/Users/fabian/imagen", {
+    let response = await fetch("./api/Users/"+localStorage.getItem("username")+"/imagen", {
       method: "POST",
       body: new FormData(avatarForm)
     });

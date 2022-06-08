@@ -64,6 +64,9 @@
 <form action="../../form-result.php" method="post" target="_blank">
 
     
+<a href="./recargar.html" style="background: #65FF33" style="color: #FFFFFF" > Loaded your count</a>
+<form action="../../form-result.php" method="post" target="_blank">
+
     <p>
         coleccion: <input type="search" name="busquedacoleccion" >
         imagen: <input type="search" name="busquedaimagen" >
@@ -73,8 +76,6 @@
     </p>
 
 </form>
-
-
 
 </body>
 </html>

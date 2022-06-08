@@ -100,6 +100,7 @@ public class UserResource {
                 Artista artista=artistas.stream().filter(u -> u.getEmail().equals(username_n) && u.getPassword().equals(password_n)).findFirst()
                         .orElse(null);
                 user.setFcoins(Integer.toString(artista.getFcoins()));
+                user.setDescrip(artista.getDescrip());
             }else if(user.getRole().equals("Costumer")){
                 List<Coustomer> coustomers=bassc.listarcoustumer();
                 Coustomer costum=coustomers.stream().filter(u -> u.getEmail().equals(username_n) && u.getPassword().equals(password_n)).findFirst().orElse(null);
@@ -158,6 +159,7 @@ public class UserResource {
             @FormParam("username") String username,
             @FormParam("password") String password,
             @FormParam("role") String role,
+            @FormParam("descricion")String descrip,
             @FormParam("email")String email
     ){
         System.out.println("linea 91");
@@ -165,6 +167,7 @@ public class UserResource {
         String contextPath =context.getRealPath("") + File.separator;
 
         try {
+            User nuevo= new User();
             User user = new UserService().createUser(username, password, role,email, contextPath);
            System.out.println("Estes es el rol"+ role);
 
@@ -177,10 +180,11 @@ public class UserResource {
             System.out.println("estes es el password "+user_n.getPassword());
             System.out.println("estes es el role "+user_n.getRole());
             System.out.println("estes es el username "+user_n.getUsername());
+            System.out.println("esta es la descripcion "+descrip);
             System.out.println("se esta pasasndo despues de crear usuario");
             if(user_n.getRole().equals("Artist")){
                 System.out.println("se esta ingresando el artista");
-                Artista nuevo_artista=new Artista(user_n.getEmail(),0,user_n.getPassword());
+                Artista nuevo_artista=new Artista(user_n.getEmail(),0,user_n.getPassword(),descrip);
                 artistaservice.insertArtist(nuevo_artista);
                 System.out.println("se esta pasasndo despues de la insercion");
             }else if(user_n.getRole().equals("Costumer")){
@@ -215,36 +219,56 @@ public class UserResource {
         ArtistaService artistaservice=new ArtistaService(conn);
         CoustumerService costuemrservice=new CoustumerService(conn);
 
-        System.out.println("linea 85");
+        System.out.println("linea 218");
         List<Usuario> users = bass.listusers();
         System.out.println(username+" este es el username");
         System.out.println(password+" este es el password");
         System.out.println(fcoins+" este es fcoins");
         System.out.println();
+
         int saldo = Integer.parseInt(fcoins);
+
         Usuario user_n = users.stream()
-                .filter(u -> u.getEmail().equals(username)&&u.getEmail().equals(password))
+                .filter(u -> u.getEmail().equals(username) && u.getPassword().equals(password))
                 .findFirst()
                 .orElse(null);
 
-        System.out.println("linea 62");
+        System.out.println("linea 232");
+        if (user_n!=null){
         if(user_n.getRole().equals("Artist")){
-            
-            artistaservice.updateartist(new Artista(username,saldo,password));
+            List<Artista> art=artistaservice.listartista();
+            Artista art_n = art.stream()
+                    .filter(u -> u.getEmail().equals(username) && u.getPassword().equals(password))
+                    .findFirst()
+                    .orElse(null);
+            artistaservice.updateartist(new Artista(username,art_n.getFcoins()+saldo,password,art_n.getDescrip()));
 
 
         }
-        else if(user_n.getRole().equals("Coustumer")){
-            costuemrservice.updatecoustumer(new Coustomer(username,saldo,password));
+        else if(user_n.getRole().equals("Costumer")){
+            List<Coustomer> cos=costuemrservice.listarcoustumer();
+            Coustomer cos_n = cos.stream()
+                    .filter(u -> u.getEmail().equals(username) && u.getPassword().equals(password))
+                    .findFirst()
+                    .orElse(null);
+            costuemrservice.updatecoustumer(new Coustomer(username,cos_n.getFcoins()+saldo,password));
 
+        }
+            System.out.println("linea 253");
+            System.out.println("linea nueva 254");
+            System.out.println("Este el email usuario "+ user_n.getEmail());
+            return Response.ok()
+                    .entity(user_n)
+                    .build();
 
         }
 
-
-
-
-
-            return null;
+        else {
+            System.out.println("esta es la linea 263");
+            return Response.status(404)
+                    .entity(new ExceptionMessage(404, "User not found"))
+                    .build();
+        }
     }
     @POST
     @Path("/formindex")

@@ -67,9 +67,10 @@ public class ArtistaService {
                 String email = rs.getString("email");
                 Integer fcoins = rs.getInt("fcoins");
                 String password=rs.getString("password");
+                String descrip=rs.getString("descrip");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                art.add(new Artista(email,fcoins,password));
+                art.add(new Artista(email,fcoins,password,descrip));
 
             }
 
@@ -104,7 +105,7 @@ public class ArtistaService {
         return DriverManager.getConnection(url, user, password);
     }
     public long insertArtist(Artista artista){
-        String SQL= "INSERT INTO artist(email, fcoins,password) VALUES(?,?,?)";
+        String SQL= "INSERT INTO artist(email, fcoins,password,descrip) VALUES(?,?,?,?)";
         long id=0;
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL,
@@ -113,6 +114,7 @@ public class ArtistaService {
             pstmt.setString(1, artista.getEmail());
             pstmt.setInt(2, artista.getFcoins());
             pstmt.setString(3, artista.getPassword());
+            pstmt.setString(4, artista.getDescrip());
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
             if (affectedRows > 0) {
