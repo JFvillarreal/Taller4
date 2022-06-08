@@ -60,6 +60,10 @@
 </script>
 
 <h1>your count have <%=  request.getAttribute("fcoins") %> Fcoins</h1>
+<a href="./recargar.html" style="background: #65FF33" style="color: #FFFFFF" > Loaded your count</a>\
+<form action="../../form-result.php" method="post" target="_blank">
+
+    
 <a href="./recargar.html" style="background: #65FF33" style="color: #FFFFFF" > Loaded your count</a>
 <form action="../../form-result.php" method="post" target="_blank">
 
