@@ -1,8 +1,6 @@
 package co.edu.unbosque.taller4.service;
 
-import co.edu.unbosque.taller4.Dto.Artista;
 import co.edu.unbosque.taller4.Dto.Colecction;
-import co.edu.unbosque.taller4.Dto.Obra;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,8 +46,40 @@ public class ColecctionService {
             }
         }
     }
+    public Connection connect() throws SQLException {
+        String url="jdbc:postgresql://localhost/postgres";
+        String user="postgres";
+        String password="Holapgadmin1999";
+        return DriverManager.getConnection(url, user, password);
+    }
+    public void crearcoleccion(Colecction coleccion){
+        String SQL= "INSERT INTO colecction(colecctionid,email,precio,titulo) VALUES(?,?,?,?)";
+        long id=0;
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL,
+                     Statement.RETURN_GENERATED_KEYS)) {
 
-    public void listacolection(){
+            pstmt.setInt(1, coleccion.getColecctionid());
+            pstmt.setString(2, coleccion.getEmail());
+            pstmt.setInt(3, coleccion.getPrecio());
+            pstmt.setString(4,coleccion.getTitulo());
+            int affectedRows = pstmt.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        id = rs.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public List<Colecction> listacolection(){
         Statement stmt=null;
 
         List<Colecction> art=new ArrayList<Colecction>();
@@ -65,12 +95,17 @@ public class ColecctionService {
             while (rs.next()) {
                 // Extracting row values by column name
                 String email = rs.getString("email");
-                Integer fcoins = rs.getInt("fcoins");
-                Integer colecctionid= rs.getInt("colecctionid");
+                Integer fcoins = rs.getInt("precio");
+                int colecctionid= rs.getInt("colecctionid");
                 String titulo= rs.getString("titulo");
 
                 // Creating a new UserApp class instance and adding it to the array list
-                art.add(new Colecction(titulo,fcoins,email,colecctionid));
+                Colecction coleccion_n=new Colecction();
+                coleccion_n.setColecctionid(colecctionid);
+                coleccion_n.setEmail(email);
+                coleccion_n.setPrecio(fcoins);
+                coleccion_n.setColecctionid(colecctionid);
+                art.add(coleccion_n);
 
             }
 
@@ -96,6 +131,7 @@ public class ColecctionService {
                 se.printStackTrace();
             }
         }
+        return art;
     }
 }
 

@@ -40,9 +40,21 @@
             var data= {
                     "precio": document.getElementById("price").value,
                     "email": localStorage.getItem("email"),
-                    "titulo": document.getElementById("name").value
+                    "titulo": document.getElementById("name").value,
             };
-            window.location.href ="http://localhost:8080/Taller4-1.0-SNAPSHOT/PonerImagen.html";
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Access-Control-Allow-Origin", "*");
+            fetch("./api/Arte/registrarcoleccion",{method: "POST",
+                body: JSON.stringify(data),
+                headers: myHeaders
+            }).then(res =>
+                res.json())
+            .then(dato => {
+                console.log(dato[""])
+                window.location.href = "http://localhost:8080/Taller4-1.0-SNAPSHOT/PonerImagen.html";
+                }
+            )
         })
     </script>
 </div>

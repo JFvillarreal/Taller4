@@ -45,7 +45,6 @@ public class Main {
             costumer.listarcoustumer();
 
             ColecctionService col= new ColecctionService(conn);
-            col.updatecolection(new Colecction("h@gmail.com", 40,"dd",9));
             col.listacolection();
 
             obraService obra =new obraService(conn);

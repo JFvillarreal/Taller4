@@ -1,17 +1,12 @@
 package co.edu.unbosque.taller4.Dto;
 
 public class Colecction {
-    private Integer colecctionid;
     private Integer precio;
     private String email;
     private String titulo;
+    private int colecctionid;
 
-    public Colecction(String titulo, Integer precio,String email,Integer colecctionid) {
-        this.colecctionid = colecctionid;
-        this.email=email;
-        this.precio=precio;
-        this.titulo=titulo;
-    }
+
 
     public Integer getPrecio() {
         return precio;
@@ -33,7 +28,7 @@ public class Colecction {
         return titulo;
     }
 
-    public Integer getColecctionid() {
+    public int getColecctionid() {
         return colecctionid;
     }
 
@@ -41,7 +36,7 @@ public class Colecction {
         this.titulo = titulo;
     }
 
-    public void setColecctionid(Integer colecctionid) {
+    public void setColecctionid(int colecctionid) {
         this.colecctionid = colecctionid;
     }
 
