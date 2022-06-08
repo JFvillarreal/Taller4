@@ -7,10 +7,19 @@ import com.opencsv.bean.HeaderColumnNameMappingStrategy;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public class ImageServices {
+
+
+
+
+
+
     public Optional<List<Pieza>> getPieces() throws IOException {
 
         List<Pieza> piezas;

@@ -6,13 +6,10 @@ public class Obra {
     private Integer pieceid;
     private String imagen ;
     private String titulo;
+    private Integer precio;
+    private String owner;
 
-    public Obra(Integer colecction, Integer pieceid,String imagen,String titulo) {
-        this.colecction = colecction;
-        this.imagen=imagen;
-        this.titulo=titulo;
-        this.pieceid=pieceid;
-    }
+
 
     public String getTitulo() {
         return titulo;
@@ -44,6 +41,22 @@ public class Obra {
 
     public void setColecction(Integer colecction) {
         this.colecction = colecction;
+    }
+
+    public Integer getPrecio() {
+        return precio;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public void setPrecio(Integer precio) {
+        this.precio = precio;
     }
 
     @Override

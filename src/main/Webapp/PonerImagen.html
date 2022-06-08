@@ -11,6 +11,13 @@
 <form id="avatar-form" class="pedidos" action="./api/users/fabian/avatars" method="POST" enctype="multipart/form-data">
 
   nombre: <input type="text" name="nombre" />
+
+  colecctionid: <input tyoe="text" name="colecctionid">
+
+  precio: <input tyoe="text" name="precio">
+
+
+
   <div > File:</div>
   <div  class="archivo">
   <p> add file</p>
@@ -36,9 +43,9 @@
   // Triggering event when submit
   avatarForm.onsubmit = async (e) => {
     e.preventDefault();
-
+    console.log("usuario "+localStorage.getItem("username"))
     // Making the request
-    let response = await fetch("./api/Users/fabian/imagen", {
+    let response = await fetch("./api/Users/"+localStorage.getItem("username")+"/imagen", {
       method: "POST",
       body: new FormData(avatarForm)
     });
