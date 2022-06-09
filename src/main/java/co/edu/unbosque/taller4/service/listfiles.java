@@ -16,14 +16,25 @@ import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 @Path("/imagenes")
 public class listfiles extends HttpServlet {
     private String UPLOAD_DIRECTORY = "imagen";
     private ImageServices imageServices;
-    public listfiles(){
+    private obraService obras;
+    static final String USER = "postgres";
+    static final String PASS = "Holapgadmin1999";
+    static final String DB_URL = "jdbc:postgresql://localhost/postgres";
+    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    public listfiles() throws SQLException {
+
         this.imageServices=new ImageServices();
+
+        obras=new obraService(conn);
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,9 +60,9 @@ public class listfiles extends HttpServlet {
         List<Pieza> piezas=imageServices.getPieces().get();
 
 
-
         for(int i=0;i< uploadDir.listFiles().length;i++){
-            files.add(UPLOAD_DIRECTORY + File.separator + "Captura de pantalla (6).png");
+            files.add(UPLOAD_DIRECTORY + File.separator + obras.listaobra().get(i).getImagen());
+            System.out.println("este es el nombre de la imagen "+obras.listaobra().get(i).getImagen());
         }
 
         // Adding the data to response, parsing it to json using Gson library
