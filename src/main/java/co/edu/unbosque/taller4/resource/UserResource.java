@@ -26,8 +26,8 @@ import java.util.List;
 @Path("/Users")
 public class UserResource {
     static final String USER = "postgres";
-    static final String PASS = "Holapgadmin1999";
-    static final String DB_URL = "jdbc:postgresql://localhost/postgres";
+    static final String PASS = "jota73456";
+    static final String DB_URL = "jdbc:postgresql://localhost/Arte";
     Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
     @Context
     ServletContext context;

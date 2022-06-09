@@ -97,9 +97,9 @@ public class CoustumerService {
         return cos;
     }
     public Connection connect() throws SQLException {
-        String url="jdbc:postgresql://localhost/postgres";
+        String url="jdbc:postgresql://localhost/Arte";
         String user="postgres";
-        String password="Holapgadmin1999";
+        String password="jota73456";
         return DriverManager.getConnection(url, user, password);
     }
     public long insertArtist(Coustomer costumer){

@@ -10,12 +10,12 @@
 <form class="loginbox">
     <div>
         <label> titulo </label>
-        <input class="boton1" type="text"  placeholder="titulo" name="piece">
+        <input class="boton1" type="text"  placeholder="titulo" name="piece" id="pieza">
 
     </div>
     <div>
         <label>  ID </label>
-        <input class="boton1" type="text"  placeholder="ID" name="usuario">
+        <input class="boton1" type="text"  placeholder="ID" name="usuario" id="vendedor">
 
     </div>
     <div ><a class="botones"  href="./confirmacion.html"   > comprar</a>
@@ -26,25 +26,28 @@
     var formulario = document.getElementById("formulario");
     addEventListener("submit",function (e){
         e.preventDefault();
-
-        console.log("este es el email "+localStorage.getItem("email"));
+        console.log("esta es la pieza "+document.getElementById("pieza").value);
+        console.log("este es el vendedor "+document.getElementById("vendedor").value);
+        console.log("este es el email "+localStorage.getItem("comprador"));
 
         var data= {
+            "pieza": document.getElementById("pieza").value,
+            "comprador": localStorage.getItem("comprador"),
+            "vendedor":document.getElementById("vendedor").value,
 
-            "email": localStorage.getItem("email"),
 
         };
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Access-Control-Allow-Origin", "*");
-        fetch("./api/Arte/registrarcoleccion",{method: "POST",
+        fetch("./api/comprar",{method: "POST",
             body: JSON.stringify(data),
             headers: myHeaders
         }).then(res =>
             res.json())
             .then(dato => {
                     console.log(dato[""])
-                    window.location.href = "http://localhost:8080/Taller4-1.0-SNAPSHOT/PonerImagen.html";
+
                 }
             )
     })
