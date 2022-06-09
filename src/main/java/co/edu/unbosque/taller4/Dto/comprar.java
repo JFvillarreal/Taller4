@@ -1,16 +1,16 @@
 package co.edu.unbosque.taller4.Dto;
 
 public class comprar {
-    private String comprador ;
+    private String email ;
     private String vendedor ;
     private String pieza;
 
-    public String getComprador() {
-        return comprador;
+    public String getEmail() {
+        return email;
     }
 
-    public void setComprador(String comprador) {
-        this.comprador = comprador;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getVendedor() {
