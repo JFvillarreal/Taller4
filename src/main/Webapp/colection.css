@@ -10,12 +10,9 @@
 
 }
 body{
-    margin: 0;
-    padding: 0;
-    background: url(./img/artefondo.jpg);
-    background-size: cover;
-
-    height: 100vh;
+    heigh:665px;
+    background-image: url("https://p4.wallpaperbetter.com/wallpaper/597/494/546/nick-sullo-cyberpunk-digital-art-techno-punk-illustration-hd-wallpaper-preview.jpg");
+    background-size: 94rem;
 
 }
 
@@ -32,20 +29,22 @@ Colection{
     padding: 70px 30px;
 }
 .titulo{
-    color: #65FF33;
-    font-size:46px; /* 1rem= 10px*/
+    color: #fff200;
+    font-size:70px; /* 1rem= 10px*/
     font-family: 'Krub', sans-serif;
     text-align: center
+
+
 
 }
 
 .colecion1{
-    width: 300px;
-    height: 420px;
-    background: #000;
-    color:#fff;
-    top:50%;
-    left:50%;
+    width: 303px;
+    height: 470px;
+    background:linear-gradient(rgba(5,7,12,0.20),rgba(5,7,12,0.20));
+    color: #fff;
+    top: 50%;
+    left: 50%;
     position: absolute;
     transform: translate(-50% ,-50%);
     box-sizing: border-box;
