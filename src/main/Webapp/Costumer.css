@@ -1,6 +1,34 @@
-#images{
-    border: 1px solid red;
-    margin-left: 100px;
+:root{
+    --blanco: #FFFFFF;
+    --negro: #000000;
+    --amarillo: #FFC107;
+    --azul: #0097A7;
+    --gris: #757575;
+    --rojo: #F40D1F;
+
+    --fuente-principal: 3.8rem;
+
+}
+body {
+    heigh:665px;
+    background-image: url("https://img.freepik.com/foto-gratis/colorida-galeria-arte-moderno_244125-1032.jpg?w=1060");
+    background-size: 95rem;
+
+}
+.botones{
+    text-decoration: none;
+    display:inline-block;
+    width:50%;
+    padding:20px;
+    background: rgb(147, 53, 53);
+    width:40%;
+    text-align: center;
+    color:white;
+    font-size: 30px;
+    font-weight: bold;
+    transition: all 0.9s ease;
+    box-shadow: -5px 1px 3px 0px rgb(248, 70, 0);
+    border-radius: 10px 30px;
 }
 img.ex1 {
     margin-left: inherit;
