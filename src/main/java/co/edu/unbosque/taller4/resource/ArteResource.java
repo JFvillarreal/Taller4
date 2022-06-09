@@ -7,6 +7,7 @@ import co.edu.unbosque.taller4.Dto.User;
 import co.edu.unbosque.taller4.service.ColecctionService;
 import co.edu.unbosque.taller4.service.ImageServices;
 import co.edu.unbosque.taller4.service.UserService;
+import co.edu.unbosque.taller4.service.obraService;
 import com.google.gson.Gson;
 
 import javax.servlet.*;
@@ -147,9 +148,11 @@ public class ArteResource {
         System.out.print("esta entrando aget images");
         String uploadpath=context.getRealPath("") + UPLOAD_DIRECTORY;
         File uploadDir = new File(uploadpath);
+        obraService obras=new obraService(conn);
         List<String> files = new ArrayList<String>();
         for(int i=0;i< uploadDir.listFiles().length;i++){
-            files.add(UPLOAD_DIRECTORY + File.separator + "name.jpg");
+            files.add(UPLOAD_DIRECTORY + File.separator + obras.listaobra().get(i).getImagen()+"&&"+obras.listaobra().get(i).getTitulo()
+            +"&&"+obras.listaobra().get(i).getPrecio()+"&&"+obras.listaobra().get(i).getOwner());
         }
         return Response.ok().entity(files).build();
     }

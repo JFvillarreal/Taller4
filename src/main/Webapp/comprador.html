@@ -30,7 +30,7 @@
                 // Creating the image element in DOM
                 let imgElem = document.createElement("img");
                 var  array=image.split("&&");
-                imgElem.src = "./" + image;
+                imgElem.src = "./" + array[0];
                 imgElem.width = 200;
                 let nautor=document.createElement("h2");
                 let titele= document.createElement("h1");
@@ -39,7 +39,7 @@
                 let titulo=document.createElement("h1");
 
                 // Attaching element to DIV
-                nautor.innerText="Autor"
+                nautor.innerText="Owner"
                 titele.innerText=array[1];
                 nprecio.innerText="Price: "
                 precio.innerText=array[2]+" Fcoins";
