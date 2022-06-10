@@ -57,11 +57,13 @@ body {
     font-weight:600;
     font-size:20px;
     color:#ffffff;
+
     padding-top:15px;
     padding-bottom:15px;
-    padding-left:150px;
-    padding-right:150px;
+    padding-left:100px;
+    padding-right:15px;
     background-color: #3863ce;
+
 }
 .boton1{
     font-size: 9px;

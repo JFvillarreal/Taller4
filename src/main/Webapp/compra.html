@@ -9,17 +9,17 @@
 <h1></h1>
 <form class="loginbox"  id = "formulario">
     <div>
-        <label> titulo </label>
+        <label> Pieceid </label>
         <input class="boton1" type="text"  placeholder="titulo" name="piece" id="pieza">
 
     </div>
     <div>
-        <label>  ID </label>
+        <label>  Dueño </label>
         <input class="boton1" type="text"  placeholder="ID" name="usuario" id="vendedor">
 
     </div>
-    <input type="submit" href="./confirmacion.html" value="comprar1" />
-    <div ><a class=""  href="./confirmacion.html"   > comprar</a>
+    <input type="submit"  value="comprar1" />
+
     </div>
 
 </form>
@@ -48,7 +48,7 @@
             res.json())
             .then(dato => {
                     console.log(dato[""])
-
+                window.location.href = "http://localhost:8080/Taller4-1.0-SNAPSHOT/confrimacion.html";
                 }
             )
     })

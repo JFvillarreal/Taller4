@@ -65,12 +65,21 @@ public class obraService {
         try {
 
             // Executing a SQL query
-            System.out.println("=> Updating owner...");
-            stmt = this.conn.prepareStatement("UPDATE obra SET imagen=? SET titulo=? SET fcoins = ? WHERE colectionid = ?");
-            stmt.setString(1, obra.getTitulo());
-            System.out.println(obra.getTitulo()+ " linae 29");
+            System.out.println("=> Updating obra...");
+            stmt = this.conn.prepareStatement("UPDATE obra  SET owner=? WHERE pieceid = ?");
+
             stmt.setInt(2, obra.getPieceid());
-            System.out.println(obra.getPieceid()+ " linae 31");
+
+            stmt.setString(1, obra.getOwner());
+
+
+            System.out.println(obra.getPieceid()+ " linae 78");
+
+            System.out.println(obra.getOwner()+ " linae 82");
+
+
+
+
             int rowsUpdated = stmt.executeUpdate(); // executeUpdate is also used for inserting records
 
             // Printing results
@@ -148,5 +157,45 @@ public class obraService {
             }
         }
         return art;
+    }
+    public void updateobra1(Obra obra) {
+        // Object for handling SQL statement
+        PreparedStatement stmt = null;
+
+        try {
+
+            // Executing a SQL query
+            System.out.println("=> Updating obra...");
+            stmt = this.conn.prepareStatement("UPDATE obra  SET precio=? WHERE pieceid = ?");
+
+            stmt.setInt(2, obra.getPrecio());
+
+            stmt.setString(1, obra.getOwner());
+
+
+            System.out.println(obra.getPrecio()+ " linae 78");
+
+            System.out.println(obra.getOwner()+ " linae 82");
+
+
+
+
+            int rowsUpdated = stmt.executeUpdate(); // executeUpdate is also used for inserting records
+
+            // Printing results
+            System.out.println("Rows updated: " + rowsUpdated + "\n");
+
+            // Closing resources
+            stmt.close();
+        } catch (SQLException se) {
+            se.printStackTrace(); // Handling errors from database
+        } finally {
+            // Cleaning-up environment
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
     }
 }
