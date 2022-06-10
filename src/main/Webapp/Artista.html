@@ -18,7 +18,7 @@
 <div id="contenedor" STYLE="background: black">
 
 </div>
-
+<div id="images"  ></div>
 <script>
     var header= document.getElementById("header");
     var contenedor=document.getElementById("contenedor");
@@ -36,5 +36,43 @@
     header.appendChild(titulo);
 
 </script>
+<script>
+
+    var imagesDiv = document.getElementById("images");
+
+    // Making a fetch call to the servlet
+    fetch("./api/Arte/listfiles")
+        .then(response => response.json())
+        .then(images => {
+            images.map(image => {
+                // Creating the image element in DOM
+                let imgElem = document.createElement("img");
+                var  array=image.split("&&");
+                imgElem.src = "./" + array[0];
+                imgElem.width = 200;
+                let nautor=document.createElement("h2");
+                let titele= document.createElement("h1");
+                let precio=document.createElement("h2");
+                let nprecio=document.createElement("h2");
+                let titulo=document.createElement("h1");
+
+                // Attaching element to DIV
+                nautor.innerText="Owner"
+                titele.innerText=array[1];
+                nprecio.innerText="Price: "
+                precio.innerText=array[2]+" Fcoins";
+                titulo.innerText=array[3];
+
+                // Attaching element to DIV
+                imagesDiv.appendChild(imgElem);
+                imagesDiv.appendChild(titulo);
+                imagesDiv.appendChild(nautor);
+                imagesDiv.appendChild(titele);
+                imagesDiv.appendChild(nprecio);
+                imagesDiv.appendChild(precio);
+            });
+        });
+</script>
+
 </body>
 </html>
