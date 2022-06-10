@@ -105,7 +105,7 @@ public class ComprarResource {
         System.out.println("passord "+ password);
         System.out.println("pieceid  "+ piece);
         System.out.println("precio "+ priecio);
-        Integer saldo = Integer.parseInt(priecio);
+        int saldo = Integer.parseInt(priecio);
         int pieza = Integer.parseInt(piece);
         System.out.println("linea 57"+ saldo);
 
@@ -126,14 +126,15 @@ public class ComprarResource {
                 .orElse(null);
 
         System.out.println("obra es null "+ o.getTitulo());
-        System.out.println("tipo variable saldo" + saldo.getClass().getSimpleName());
+
         System.out.println("usuario "+ user_n.getUsername());
          if(o!=null && user_n!=null){
 
              System.out.println("entrando a la condicional");
+             o.setPrecio(saldo);
 
              obra.updateobra1(o);
-             o.setPrecio(saldo);
+
          }
         System.out.println("sale");
         return null;

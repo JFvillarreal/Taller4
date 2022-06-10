@@ -168,9 +168,9 @@ public class obraService {
             System.out.println("=> Updating obra...");
             stmt = this.conn.prepareStatement("UPDATE obra  SET precio=? WHERE pieceid = ?");
 
-            stmt.setInt(2, obra.getPrecio());
+            stmt.setInt(1, obra.getPrecio());
 
-            stmt.setString(1, obra.getOwner());
+            stmt.setInt(2, obra.getPieceid());
 
 
             System.out.println(obra.getPrecio()+ " linae 78");
