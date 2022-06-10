@@ -3,7 +3,7 @@ package co.edu.unbosque.taller4.Dto;
 public class comprar {
     private String email ;
     private String vendedor ;
-    private String pieza;
+    private int pieza;
 
     public String getEmail() {
         return email;
@@ -21,11 +21,11 @@ public class comprar {
         this.vendedor = vendedor;
     }
 
-    public String getPieza() {
+    public int getPieza() {
         return pieza;
     }
 
-    public void setPieza(String pieza) {
+    public void setPieza(int pieza) {
         this.pieza = pieza;
     }
 }
