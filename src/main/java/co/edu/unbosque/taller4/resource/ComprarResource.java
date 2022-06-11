@@ -12,13 +12,15 @@ import javax.ws.rs.core.Response;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Path("/comprar")
 public class ComprarResource {
     static final String USER = "postgres";
-    static final String PASS = "jota73456";
-    static final String DB_URL = "jdbc:postgresql://localhost/Arte";
+    static final String PASS = "Holapgadmin1999";
+    static final String DB_URL = "jdbc:postgresql://localhost/postgres";
     Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
     @Context
     ServletContext context;
@@ -34,9 +36,10 @@ public class ComprarResource {
         ArtistaService artistaservice=new ArtistaService(conn);
         CoustumerService costuemrservice=new CoustumerService(conn);
         obraService obra=new obraService(conn);
+        WalletHistory walletHistory=new WalletHistory(conn);
         Obra obr=new Obra();
-
-
+        Wallet cartera1=new Wallet();
+        Wallet cartera2=new Wallet();
         List<Obra>  obras = obra.listaobra();
         for (int i =0;i<obras.size();i++){
             System.out.println("este el id de la obra dentro la i"+ obras.get(i).getPieceid());
@@ -74,8 +77,19 @@ public class ComprarResource {
                 System.out.println("paso despues de artista");
                 o.setOwner(comp.getEmail());
              obra.updateobra(o);
-
-
+             cartera1.setIdwellet(walletHistory.listaobra().size()+1);
+                cartera1.setEmail(cos_n.getEmail());
+                cartera1.setFcoins(cos_n.getFcoins());
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                String date= dtf.format(LocalDateTime.now());
+                System.out.println("esta es la fecha "+date);
+                cartera1.setDate(date);
+                walletHistory.insertobra(cartera1);
+                cartera2.setIdwellet(walletHistory.listaobra().size()+1);
+                cartera2.setEmail(art_n.getEmail());
+                cartera2.setFcoins(art_n.getFcoins());
+                cartera2.setDate(date);
+                walletHistory.insertobra(cartera2);
             }
             else {
                 System.out.println("fcoins insufucientes");

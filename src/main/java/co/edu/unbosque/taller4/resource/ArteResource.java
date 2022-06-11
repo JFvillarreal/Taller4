@@ -27,8 +27,8 @@ import java.util.List;
 public class ArteResource {
     private String UPLOAD_DIRECTORY = "/imagen";
     static final String USER = "postgres";
-    static final String PASS = "jota73456";
-    static final String DB_URL = "jdbc:postgresql://localhost/Arte";
+    static final String PASS = "Holapgadmin1999";
+    static final String DB_URL = "jdbc:postgresql://localhost/postgres";
     private ColecctionService col;
     private Colecction colecction;
     Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
