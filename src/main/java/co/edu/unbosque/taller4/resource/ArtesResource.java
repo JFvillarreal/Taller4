@@ -34,8 +34,8 @@ public class ArtesResource {
     ServletContext context;
 
     static final String USER = "postgres";
-    static final String PASS = "jota73456";
-    static final String DB_URL = "jdbc:postgresql://localhost/Arte";
+    static final String PASS = "Holapgadmin1999";
+    static final String DB_URL = "jdbc:postgresql://localhost/postgres";
     Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
     private final String UPLOAD_DIRECTORY = "/imagen/";
 
