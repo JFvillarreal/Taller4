@@ -45,21 +45,27 @@
                 let precio=document.createElement("h2");
                 let nprecio=document.createElement("h2");
                 let titulo=document.createElement("h1");
+                let referenciacol=document.createElement("h1");
+                let nombrecolleccion=document.createElement("h1");
 
                 // Attaching element to DIV
                 nautor.innerText="Owner"
+                referenciacol.innerText="Colecction"
                 titele.innerText=array[1];
                 nprecio.innerText="Price: "
                 precio.innerText=array[2]+" Fcoins";
                 titulo.innerText=array[3];
+                nombrecolleccion.innerText=array[4];
                 dicpeq.appendChild(titulo);
                 // Attaching element to DIV
                 imagesDiv.appendChild(imgElem);
-                imagesDiv.appendChild(dicpeq);
-                imagesDiv.appendChild(nautor);
                 imagesDiv.appendChild(titele);
+                imagesDiv.appendChild(nautor);
+                imagesDiv.appendChild(dicpeq);
                 imagesDiv.appendChild(nprecio);
                 imagesDiv.appendChild(precio);
+                imagesDiv.appendChild(referenciacol);
+                imagesDiv.appendChild(nombrecolleccion);
             });
         });
 </script>
