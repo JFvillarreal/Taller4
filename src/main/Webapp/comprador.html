@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="./Costumer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
 </head>
 <body >
 <header style="background: whitesmoke"  id="header"></header>
@@ -18,7 +21,7 @@
     encabezado.appendChild(linea);
 </script>
 <h1>Pictures avaibles</h1>
-<div id="images"  ></div>
+<div id="images"  style="background: #170437"></div>
 <div style="background: black" id="contenedor1"><h2 id="letras"></h2></div>
 <script>
 
@@ -31,9 +34,12 @@
             images.map(image => {
                 // Creating the image element in DOM
                 let imgElem = document.createElement("img");
+                imgElem.style="border: 5px solid; color: white;";
                 var  array=image.split("&&");
                 imgElem.src = "./" + array[0];
-                imgElem.width = 200;
+                imgElem.width = 300;
+                let dicpeq=document.createElement("div");
+                dicpeq.style="background-color: white";
                 let nautor=document.createElement("h2");
                 let titele= document.createElement("h1");
                 let precio=document.createElement("h2");
@@ -46,10 +52,10 @@
                 nprecio.innerText="Price: "
                 precio.innerText=array[2]+" Fcoins";
                 titulo.innerText=array[3];
-
+                dicpeq.appendChild(titulo);
                 // Attaching element to DIV
                 imagesDiv.appendChild(imgElem);
-                imagesDiv.appendChild(titulo);
+                imagesDiv.appendChild(dicpeq);
                 imagesDiv.appendChild(nautor);
                 imagesDiv.appendChild(titele);
                 imagesDiv.appendChild(nprecio);

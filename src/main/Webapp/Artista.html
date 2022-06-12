@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="./Artista.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
 </head>
 
 <body >
 <header style="background: black" id="header"></header>
-
-
-
 <a class="botones" href="./recargar.html"   > Loaded your count</a>
 <a class="botones" href="./Colection.html"   > coleccion</a>
 <a class="botones" href="./PonerImagen.html" > obra</a>
@@ -20,7 +20,7 @@
 <div id="contenedor" STYLE="background: black">
 
 </div>
-<div id="images"  ></div>
+<div id="images"  style="background: #351272" ></div>
 <script>
     var header= document.getElementById("header");
     var contenedor=document.getElementById("contenedor");
@@ -49,9 +49,10 @@
             images.map(image => {
                 // Creating the image element in DOM
                 let imgElem = document.createElement("img");
+                imgElem.style="border: 5px solid; color: black;";
                 var  array=image.split("&&");
                 imgElem.src = "./" + array[0];
-                imgElem.width = 200;
+                imgElem.width = 300;
                 let nautor=document.createElement("h2");
                 let titele= document.createElement("h1");
                 let precio=document.createElement("h2");
