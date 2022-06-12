@@ -151,8 +151,11 @@ public class ArteResource {
         obraService obras=new obraService(conn);
         List<String> files = new ArrayList<String>();
         for(int i=0;i< uploadDir.listFiles().length;i++){
-            files.add(UPLOAD_DIRECTORY + File.separator + obras.listaobra().get(i).getImagen()+"&&"+obras.listaobra().get(i).getTitulo()
-            +"&&"+obras.listaobra().get(i).getPrecio()+"&&"+obras.listaobra().get(i).getOwner());
+            String titulo=col.colecctionN(obras.listaobra().get(i).getColecction());
+            System.out.println("este es el titulo de la coleccion "+titulo);
+            files.add(UPLOAD_DIRECTORY + File.separator + obras.listaobra().get(i).getImagen() + "&&" + obras.listaobra().get(i).getTitulo()
+                    + "&&" + obras.listaobra().get(i).getPrecio() + "&&" + obras.listaobra().get(i).getOwner()
+            +"&&"+titulo    );
         }
         return Response.ok().entity(files).build();
     }

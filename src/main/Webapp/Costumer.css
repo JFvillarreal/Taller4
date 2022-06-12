@@ -21,6 +21,7 @@ body {
     width:50%;
     padding:20px;
     background: rgb(147, 53, 53);
+    font-family: 'Kdam Thmor Pro', sans-serif;
     width:40%;
     text-align: center;
     color:white;
@@ -32,6 +33,9 @@ body {
 }
 img.ex1 {
     margin-left: inherit;
+}
+#images{
+    width: 590px;
 }
 a{
     -webkit-border-radius: 4px;
@@ -54,4 +58,14 @@ a{
 }
 h2{
     color: whitesmoke;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+h1{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+h3{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+a{
+    font-family: 'Kdam Thmor Pro', sans-serif;
 }

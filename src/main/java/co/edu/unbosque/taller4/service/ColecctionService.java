@@ -94,6 +94,7 @@ public class ColecctionService {
             // Reading data from result set row by row
             while (rs.next()) {
                 // Extracting row values by column name
+
                 String email = rs.getString("email");
                 Integer fcoins = rs.getInt("precio");
                 int colecctionid= rs.getInt("colecctionid");
@@ -104,7 +105,7 @@ public class ColecctionService {
                 coleccion_n.setColecctionid(colecctionid);
                 coleccion_n.setEmail(email);
                 coleccion_n.setPrecio(fcoins);
-                coleccion_n.setColecctionid(colecctionid);
+                coleccion_n.setTitulo(titulo);
                 art.add(coleccion_n);
 
             }
@@ -133,7 +134,21 @@ public class ColecctionService {
         }
         return art;
     }
+
+    public String colecctionN(int idcolect){
+        String res="";
+        System.out.println("esta es la funcion y este es idcolect "+idcolect);
+        for(Colecction coleccion:this.listacolection()){
+            if(coleccion.getColecctionid() == idcolect){
+                System.out.println("este es e nombre it "+coleccion.getTitulo());
+                res=coleccion.getTitulo();
+            }
+        }
+        return res;
+    }
+
 }
+
 
 
 
